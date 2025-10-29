@@ -368,7 +368,7 @@ body {
 
 @media (max-width: 768px) {
     .flipbook-container {
-        padding: 60px 10px 10px;
+        padding: 60px 10px 120px;
         gap: 15px;
     }
 
@@ -392,6 +392,7 @@ body {
         max-width: 95vw;
         justify-content: center;
         margin-top: 10px;
+        bottom: 80px;
     }
 
     .progress-slider {
