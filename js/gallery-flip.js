@@ -128,10 +128,10 @@ class PhotoFlipbook {
             clickEventForward: true,
             usePortrait: false,
             startPage: 0,
-            drawShadow: true,
+            drawShadow: false,
             flippingTime: 1000,
             useMouseEvents: true,
-            maxShadowOpacity: 0.5,
+            maxShadowOpacity: 0,
             showPageCorners: true,
             disableFlipByClick: false
         });
@@ -377,12 +377,12 @@ class PhotoFlipbook {
             mobileScrollSupport: true,
             swipeDistance: 30,
             clickEventForward: true,
-            usePortrait: false,
+            usePortrait: true,
             startPage: 0,
-            drawShadow: true,
+            drawShadow: false,
             flippingTime: 1000,
             useMouseEvents: true,
-            maxShadowOpacity: 0.5,
+            maxShadowOpacity: 0,
             showPageCorners: true,
             disableFlipByClick: false
         });
