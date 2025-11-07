@@ -75,33 +75,71 @@ class PhotoFlipbook {
 
     /**
      * Вычисление размеров книги
+     * Использует процентный подход для адаптации к любым экранам
      */
     calculateBookDimensions() {
         const vw = window.innerWidth;
         const vh = window.innerHeight;
 
+        // Высота элементов UI (кнопка назад + панель управления + отступы)
+        const topOffset = 80;    // Кнопка назад + отступ сверху
+        const bottomOffset = 140; // Панель управления + отступ снизу
+        const availableHeight = vh - topOffset - bottomOffset;
+
         let pageWidth, pageHeight;
 
         // Мобильные устройства (до 768px)
         if (vw <= 768) {
-            pageWidth = Math.floor(vw * 0.42);
-            pageHeight = Math.floor(pageWidth * 1.4);
+            // На мобильных больше отступов для панели
+            const mobileBottomOffset = 180;
+            const mobileAvailableHeight = vh - topOffset - mobileBottomOffset;
 
-            // Проверяем по высоте
-            if (pageHeight > vh - 150) {
-                pageHeight = vh - 150;
-                pageWidth = Math.floor(pageHeight / 1.4);
+            // Используем 85% доступной высоты
+            pageHeight = Math.floor(mobileAvailableHeight * 0.85);
+
+            // Соотношение сторон 1:1.4 (портрет)
+            pageWidth = Math.floor(pageHeight / 1.4);
+
+            // Но не больше 42% ширины экрана
+            const maxWidth = Math.floor(vw * 0.42);
+            if (pageWidth > maxWidth) {
+                pageWidth = maxWidth;
+                pageHeight = Math.floor(pageWidth * 1.4);
             }
         }
         // Планшеты (769-1024px)
         else if (vw <= 1024) {
-            pageWidth = 280;
-            pageHeight = 400;
+            // Используем 80% доступной высоты
+            pageHeight = Math.floor(availableHeight * 0.80);
+
+            // Соотношение сторон 1:1.42
+            pageWidth = Math.floor(pageHeight / 1.42);
+
+            // Ограничение по ширине: не больше 30% экрана на одну страницу
+            const maxWidth = Math.floor(vw * 0.30);
+            if (pageWidth > maxWidth) {
+                pageWidth = maxWidth;
+                pageHeight = Math.floor(pageWidth * 1.42);
+            }
         }
-        // Десктоп
+        // Десктоп (> 1024px)
         else {
-            pageWidth = 350;
-            pageHeight = 500;
+            // Используем 90% доступной высоты
+            pageHeight = Math.floor(availableHeight * 0.90);
+
+            // Соотношение сторон 1:1.4
+            pageWidth = Math.floor(pageHeight / 1.4);
+
+            // Ограничение: одна страница не больше 30% ширины экрана
+            const maxWidth = Math.floor(vw * 0.30);
+            if (pageWidth > maxWidth) {
+                pageWidth = maxWidth;
+                pageHeight = Math.floor(pageWidth * 1.4);
+            }
+
+            // Минимальные размеры для десктопа
+            if (pageWidth < 400) pageWidth = 400;
+            if (pageHeight < 560) pageHeight = 560;
         }
 
         return {
