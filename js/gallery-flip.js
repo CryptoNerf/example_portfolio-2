@@ -84,7 +84,8 @@ class PhotoFlipbook {
         let vw = window.innerWidth;
         let vh = window.innerHeight;
 
-        // Если книга повёрнута, меняем местами ширину и высоту
+        // Если книга повёрнута, меняем местами ширину и высоту для расчётов
+        // Так как CSS поворачивает контейнер, нужно думать в системе координат повёрнутой книги
         if (this.isRotated) {
             [vw, vh] = [vh, vw];
         }
@@ -96,25 +97,52 @@ class PhotoFlipbook {
 
         let pageWidth, pageHeight;
 
-        // Мобильные устройства (до 768px)
-        if (vw <= 768) {
+        // Определяем тип устройства на основе минимальной стороны экрана
+        // Это гарантирует что вертикальный телефон останется "мобильным" даже при повороте
+        const originalWidth = Math.min(window.innerWidth, window.innerHeight);
+
+        console.log('Тип устройства: originalWidth=', originalWidth, 'isRotated=', this.isRotated);
+
+        // Мобильные устройства (до 768px по минимальной стороне)
+        if (originalWidth <= 768) {
             if (this.isRotated) {
-                // Для повёрнутой книги используем максимум пространства
-                const mobileBottomOffset = 180;
-                const mobileAvailableHeight = vh - topOffset - mobileBottomOffset;
+                // Для повёрнутой книги - используем реальные размеры экрана
+                // vw и vh уже поменяны местами выше
+                // vw = высота экрана, vh = ширина экрана
 
-                // Максимум - почти вся ширина экрана (по 49% на страницу = разворот 98%)
-                pageWidth = Math.floor(vw * 0.49);
+                console.log('ПОВОРОТ: vw=', vw, 'vh=', vh, 'realWidth=', window.innerWidth, 'realHeight=', window.innerHeight);
 
-                // Высота из соотношения сторон 1:1.15 (очень широкие страницы)
-                pageHeight = Math.floor(pageWidth * 1.15);
+                // После поворота на -90°:
+                // pageWidth станет вертикальным размером (используем высоту экрана - vw)
+                // pageHeight станет горизонтальным размером (используем ширину экрана - vh)
 
-                // Проверка по высоте - не больше 100% доступного
-                const maxHeight = Math.floor(mobileAvailableHeight * 1.0);
-                if (pageHeight > maxHeight) {
-                    pageHeight = maxHeight;
-                    pageWidth = Math.floor(pageHeight / 1.15);
+                // После поворота на -90°:
+                // pageWidth станет ВЕРТИКАЛЬНЫМ размером (высота книги на экране)
+                // pageHeight станет ГОРИЗОНТАЛЬНЫМ размером (ширина книги на экране)
+
+                const topSpace = 80;     // Кнопка назад + отступ сверху
+                const bottomSpace = 200; // Панель управления + большой отступ снизу
+                const totalUISpace = topSpace + bottomSpace; // 280px
+
+                // Для горизонтальных фото нужно соотношение pageHeight:pageWidth ≈ 1.5:1
+                // Чтобы после поворота на -90° получилось 1:1.5 (горизонтально)
+
+                // Начинаем с горизонтального размера (станет шириной после поворота)
+                pageHeight = Math.floor(vh * 0.70);
+
+                // Вычисляем вертикальный размер из соотношения 1.5:1
+                // pageHeight / pageWidth = 1.5, значит pageWidth = pageHeight / 1.5
+                pageWidth = Math.floor(pageHeight / 1.5);
+
+                // Проверяем что разворот помещается по вертикали
+                const spreadHeight = pageWidth * 2;
+                if (spreadHeight > (vw - totalUISpace)) {
+                    // Если не помещается, пересчитываем от доступной высоты
+                    pageWidth = Math.floor((vw - totalUISpace) * 0.47);
+                    pageHeight = Math.floor(pageWidth * 1.5);
                 }
+
+                console.log('РАСЧЁТ: pageWidth=', pageWidth, 'pageHeight=', pageHeight, 'разворот=', pageWidth * 2, 'ratio=', (pageHeight/pageWidth).toFixed(2));
             } else {
                 // Обычная ориентация
                 const mobileBottomOffset = 180;
@@ -134,8 +162,8 @@ class PhotoFlipbook {
                 }
             }
         }
-        // Планшеты (769-1024px)
-        else if (vw <= 1024) {
+        // Планшеты (769-1024px по исходной ширине)
+        else if (originalWidth <= 1024) {
             // Если книга повёрнута, используем больше пространства
             const heightPercent = this.isRotated ? 0.95 : 0.80;
             const maxWidthPercent = this.isRotated ? 0.42 : 0.30;
@@ -153,7 +181,7 @@ class PhotoFlipbook {
                 pageHeight = Math.floor(pageWidth * 1.42);
             }
         }
-        // Десктоп (> 1024px)
+        // Десктоп (> 1024px по исходной ширине)
         else {
             // Если книга повёрнута, используем больше пространства
             const heightPercent = this.isRotated ? 0.98 : 0.90;
@@ -450,10 +478,16 @@ class PhotoFlipbook {
         const currentPage = this.currentPage;
         const { width, height } = this.calculateBookDimensions();
 
-        // Сохраняем canvas элементы перед destroy
-        const wrapper = this.bookContainer.querySelector('.stf__wrapper');
-        if (wrapper) {
-            wrapper.style.display = 'none';
+        console.log('Пересоздание книги:', width, 'x', height, this.isRotated ? '(повёрнута)' : '');
+
+        // Очищаем старые обработчики событий
+        try {
+            if (this.pageFlip.off) {
+                this.pageFlip.off('flip');
+                this.pageFlip.off('changeState');
+            }
+        } catch (e) {
+            console.warn('Не удалось очистить обработчики:', e);
         }
 
         // Полностью очищаем контейнер
@@ -471,7 +505,7 @@ class PhotoFlipbook {
             mobileScrollSupport: true,
             swipeDistance: 30,
             clickEventForward: true,
-            usePortrait: true,
+            usePortrait: false,
             startPage: 0,
             drawShadow: false,
             flippingTime: 1000,
@@ -492,10 +526,17 @@ class PhotoFlipbook {
 
         // Переходим на сохраненную страницу
         if (currentPage > 0) {
-            this.pageFlip.flip(currentPage);
+            setTimeout(() => {
+                this.pageFlip.flip(currentPage);
+            }, 100);
         }
 
         this.updateControls();
+
+        // Подстраиваем wrapper через небольшую задержку
+        setTimeout(() => {
+            this.adjustBookWrapper();
+        }, 150);
 
         console.log('Книга пересоздана:', width, 'x', height, this.isRotated ? '(повёрнута)' : '');
     }
