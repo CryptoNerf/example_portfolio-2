@@ -78,6 +78,12 @@ body {
     height: 100%;
     flex: 1;
     min-height: 0;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Повёрнутая книга */
+.book-wrapper.rotated {
+    transform: rotate(-90deg);
 }
 
 #book {
@@ -154,8 +160,9 @@ body {
     z-index: 50;
 }
 
-/* Кнопка сетки */
+/* Кнопка сетки и навигации */
 .grid-btn,
+.rotate-btn,
 .nav-control-btn {
     width: 40px;
     height: 40px;
@@ -170,19 +177,31 @@ body {
 }
 
 .grid-btn:hover,
+.rotate-btn:hover,
 .nav-control-btn:hover {
     background: #e0e0e0;
     transform: scale(1.05);
 }
 
 .grid-btn:active,
+.rotate-btn:active,
 .nav-control-btn:active {
     transform: scale(0.95);
 }
 
 .grid-btn svg,
+.rotate-btn svg,
 .nav-control-btn svg {
     color: #333;
+}
+
+/* Активная кнопка поворота */
+.rotate-btn.active {
+    background: #333;
+}
+
+.rotate-btn.active svg {
+    color: white;
 }
 
 .nav-control-btn:disabled {

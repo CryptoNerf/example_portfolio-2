@@ -9,15 +9,18 @@ class PhotoFlipbook {
         this.pageFlip = null;
         this.currentPage = 0;
         this.totalPages = photos.length;
+        this.isRotated = false; // Состояние поворота книги
 
         // DOM элементы
         this.bookContainer = document.getElementById('book');
+        this.bookWrapper = document.querySelector('.book-wrapper');
         this.currentPhotoSpan = document.getElementById('currentPhoto');
         this.totalPhotosSpan = document.getElementById('totalPhotos');
         this.progressSlider = document.getElementById('progressSlider');
         this.prevPageBtn = document.getElementById('prevPageBtn');
         this.nextPageBtn = document.getElementById('nextPageBtn');
         this.gridBtn = document.getElementById('gridBtn');
+        this.rotateBtn = document.getElementById('rotateBtn');
         this.gridModal = document.getElementById('gridModal');
         this.gridContainer = document.getElementById('gridContainer');
         this.closeGridBtn = document.getElementById('closeGrid');
@@ -78,8 +81,13 @@ class PhotoFlipbook {
      * Использует процентный подход для адаптации к любым экранам
      */
     calculateBookDimensions() {
-        const vw = window.innerWidth;
-        const vh = window.innerHeight;
+        let vw = window.innerWidth;
+        let vh = window.innerHeight;
+
+        // Если книга повёрнута, меняем местами ширину и высоту
+        if (this.isRotated) {
+            [vw, vh] = [vh, vw];
+        }
 
         // Высота элементов UI (кнопка назад + панель управления + отступы)
         const topOffset = 80;    // Кнопка назад + отступ сверху
@@ -90,33 +98,56 @@ class PhotoFlipbook {
 
         // Мобильные устройства (до 768px)
         if (vw <= 768) {
-            // На мобильных больше отступов для панели
-            const mobileBottomOffset = 180;
-            const mobileAvailableHeight = vh - topOffset - mobileBottomOffset;
+            if (this.isRotated) {
+                // Для повёрнутой книги используем максимум пространства
+                const mobileBottomOffset = 180;
+                const mobileAvailableHeight = vh - topOffset - mobileBottomOffset;
 
-            // Используем 85% доступной высоты
-            pageHeight = Math.floor(mobileAvailableHeight * 0.85);
+                // Максимум - почти вся ширина экрана (по 49% на страницу = разворот 98%)
+                pageWidth = Math.floor(vw * 0.49);
 
-            // Соотношение сторон 1:1.4 (портрет)
-            pageWidth = Math.floor(pageHeight / 1.4);
+                // Высота из соотношения сторон 1:1.15 (очень широкие страницы)
+                pageHeight = Math.floor(pageWidth * 1.15);
 
-            // Но не больше 42% ширины экрана
-            const maxWidth = Math.floor(vw * 0.42);
-            if (pageWidth > maxWidth) {
-                pageWidth = maxWidth;
-                pageHeight = Math.floor(pageWidth * 1.4);
+                // Проверка по высоте - не больше 100% доступного
+                const maxHeight = Math.floor(mobileAvailableHeight * 1.0);
+                if (pageHeight > maxHeight) {
+                    pageHeight = maxHeight;
+                    pageWidth = Math.floor(pageHeight / 1.15);
+                }
+            } else {
+                // Обычная ориентация
+                const mobileBottomOffset = 180;
+                const mobileAvailableHeight = vh - topOffset - mobileBottomOffset;
+
+                // Используем 85% доступной высоты
+                pageHeight = Math.floor(mobileAvailableHeight * 0.85);
+
+                // Соотношение сторон 1:1.4 (портрет)
+                pageWidth = Math.floor(pageHeight / 1.4);
+
+                // Но не больше 42% ширины экрана
+                const maxWidth = Math.floor(vw * 0.42);
+                if (pageWidth > maxWidth) {
+                    pageWidth = maxWidth;
+                    pageHeight = Math.floor(pageWidth * 1.4);
+                }
             }
         }
         // Планшеты (769-1024px)
         else if (vw <= 1024) {
-            // Используем 80% доступной высоты
-            pageHeight = Math.floor(availableHeight * 0.80);
+            // Если книга повёрнута, используем больше пространства
+            const heightPercent = this.isRotated ? 0.95 : 0.80;
+            const maxWidthPercent = this.isRotated ? 0.42 : 0.30;
+
+            // Используем 80-95% доступной высоты
+            pageHeight = Math.floor(availableHeight * heightPercent);
 
             // Соотношение сторон 1:1.42
             pageWidth = Math.floor(pageHeight / 1.42);
 
-            // Ограничение по ширине: не больше 30% экрана на одну страницу
-            const maxWidth = Math.floor(vw * 0.30);
+            // Ограничение по ширине: не больше 30-42% экрана на одну страницу
+            const maxWidth = Math.floor(vw * maxWidthPercent);
             if (pageWidth > maxWidth) {
                 pageWidth = maxWidth;
                 pageHeight = Math.floor(pageWidth * 1.42);
@@ -124,14 +155,18 @@ class PhotoFlipbook {
         }
         // Десктоп (> 1024px)
         else {
-            // Используем 90% доступной высоты
-            pageHeight = Math.floor(availableHeight * 0.90);
+            // Если книга повёрнута, используем больше пространства
+            const heightPercent = this.isRotated ? 0.98 : 0.90;
+            const maxWidthPercent = this.isRotated ? 0.42 : 0.30;
+
+            // Используем 90-98% доступной высоты
+            pageHeight = Math.floor(availableHeight * heightPercent);
 
             // Соотношение сторон 1:1.4
             pageWidth = Math.floor(pageHeight / 1.4);
 
-            // Ограничение: одна страница не больше 30% ширины экрана
-            const maxWidth = Math.floor(vw * 0.30);
+            // Ограничение: одна страница не больше 30-42% ширины экрана
+            const maxWidth = Math.floor(vw * maxWidthPercent);
             if (pageWidth > maxWidth) {
                 pageWidth = maxWidth;
                 pageHeight = Math.floor(pageWidth * 1.4);
@@ -254,6 +289,9 @@ class PhotoFlipbook {
                 this.closeGrid();
             }
         });
+
+        // Поворот книги
+        this.rotateBtn.addEventListener('click', () => this.toggleRotation());
 
         // Клавиатура
         document.addEventListener('keydown', (e) => {
@@ -386,9 +424,27 @@ class PhotoFlipbook {
     }
 
     /**
-     * Обработка изменения размера окна
+     * Переключение поворота книги
      */
-    handleResize() {
+    toggleRotation() {
+        this.isRotated = !this.isRotated;
+
+        if (this.isRotated) {
+            this.bookWrapper.classList.add('rotated');
+            this.rotateBtn.classList.add('active');
+        } else {
+            this.bookWrapper.classList.remove('rotated');
+            this.rotateBtn.classList.remove('active');
+        }
+
+        // Пересоздаём книгу с новыми размерами
+        this.recreateBook();
+    }
+
+    /**
+     * Пересоздание книги (используется при resize и rotate)
+     */
+    recreateBook() {
         if (!this.pageFlip) return;
 
         const currentPage = this.currentPage;
@@ -431,6 +487,7 @@ class PhotoFlipbook {
         this.pageFlip.on('flip', (e) => {
             this.currentPage = e.data;
             this.updateControls();
+            this.adjustBookWrapper();
         });
 
         // Переходим на сохраненную страницу
@@ -440,7 +497,14 @@ class PhotoFlipbook {
 
         this.updateControls();
 
-        console.log('Resize: книга пересоздана', width, 'x', height);
+        console.log('Книга пересоздана:', width, 'x', height, this.isRotated ? '(повёрнута)' : '');
+    }
+
+    /**
+     * Обработка изменения размера окна
+     */
+    handleResize() {
+        this.recreateBook();
     }
 }
 
