@@ -164,45 +164,63 @@ class PhotoFlipbook {
         }
         // Планшеты (769-1024px по исходной ширине)
         else if (originalWidth <= 1024) {
+            console.log('ПЛАНШЕТ: vw=', vw, 'vh=', vh, 'availableHeight=', availableHeight);
+
             // Если книга повёрнута, используем больше пространства
-            const heightPercent = this.isRotated ? 0.95 : 0.80;
-            const maxWidthPercent = this.isRotated ? 0.42 : 0.30;
+            const heightPercent = this.isRotated ? 0.95 : 0.95;
+            const maxWidthPercent = this.isRotated ? 0.44 : 0.45;
 
-            // Используем 80-95% доступной высоты
-            pageHeight = Math.floor(availableHeight * heightPercent);
-
-            // Соотношение сторон 1:1.42
-            pageWidth = Math.floor(pageHeight / 1.42);
-
-            // Ограничение по ширине: не больше 30-42% экрана на одну страницу
-            const maxWidth = Math.floor(vw * maxWidthPercent);
-            if (pageWidth > maxWidth) {
-                pageWidth = maxWidth;
-                pageHeight = Math.floor(pageWidth * 1.42);
-            }
-        }
-        // Десктоп (> 1024px по исходной ширине)
-        else {
-            // Если книга повёрнута, используем больше пространства
-            const heightPercent = this.isRotated ? 0.98 : 0.90;
-            const maxWidthPercent = this.isRotated ? 0.42 : 0.30;
-
-            // Используем 90-98% доступной высоты
+            // Используем 95% доступной высоты
             pageHeight = Math.floor(availableHeight * heightPercent);
 
             // Соотношение сторон 1:1.4
             pageWidth = Math.floor(pageHeight / 1.4);
 
-            // Ограничение: одна страница не больше 30-42% ширины экрана
+            console.log('РАСЧЁТ ОТ ВЫСОТЫ: pageWidth=', pageWidth, 'pageHeight=', pageHeight);
+
+            // Ограничение по ширине: не больше 45-48% экрана на одну страницу
             const maxWidth = Math.floor(vw * maxWidthPercent);
+            console.log('maxWidth=', maxWidth, 'maxWidthPercent=', maxWidthPercent);
+
             if (pageWidth > maxWidth) {
                 pageWidth = maxWidth;
                 pageHeight = Math.floor(pageWidth * 1.4);
+                console.log('ОГРАНИЧЕНО ПО ШИРИНЕ: pageWidth=', pageWidth, 'pageHeight=', pageHeight);
+            }
+
+            console.log('ИТОГО ПЛАНШЕТ: pageWidth=', pageWidth, 'pageHeight=', pageHeight, 'разворот=', pageWidth * 2);
+        }
+        // Десктоп (> 1024px по исходной ширине)
+        else {
+            console.log('ДЕСКТОП: vw=', vw, 'vh=', vh, 'availableHeight=', availableHeight);
+
+            // Если книга повёрнута, используем больше пространства
+            const heightPercent = this.isRotated ? 0.98 : 0.98;
+            const maxWidthPercent = this.isRotated ? 0.45 : 0.48;
+
+            // Используем 98% доступной высоты
+            pageHeight = Math.floor(availableHeight * heightPercent);
+
+            // Соотношение сторон 1:1.4
+            pageWidth = Math.floor(pageHeight / 1.4);
+
+            console.log('РАСЧЁТ ОТ ВЫСОТЫ: pageWidth=', pageWidth, 'pageHeight=', pageHeight);
+
+            // Ограничение: одна страница не больше 48-49% ширины экрана
+            const maxWidth = Math.floor(vw * maxWidthPercent);
+            console.log('maxWidth=', maxWidth, 'maxWidthPercent=', maxWidthPercent);
+
+            if (pageWidth > maxWidth) {
+                pageWidth = maxWidth;
+                pageHeight = Math.floor(pageWidth * 1.4);
+                console.log('ОГРАНИЧЕНО ПО ШИРИНЕ: pageWidth=', pageWidth, 'pageHeight=', pageHeight);
             }
 
             // Минимальные размеры для десктопа
-            if (pageWidth < 400) pageWidth = 400;
-            if (pageHeight < 560) pageHeight = 560;
+            if (pageWidth < 500) pageWidth = 500;
+            if (pageHeight < 700) pageHeight = 700;
+
+            console.log('ИТОГО ДЕСКТОП: pageWidth=', pageWidth, 'pageHeight=', pageHeight, 'разворот=', pageWidth * 2);
         }
 
         return {
