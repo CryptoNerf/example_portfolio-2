@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Книга - Главная</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasha Mamba - Portfolio</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	max-width: 600px;
-	margin: 50px auto;
-	padding: 20px;
-	line-height: 1.6;
-}
-h1 {
-	color: #333;
-}
-p {
-	color: #666;
-}
+    <div class="main-container">
+        <!-- Первая колонка: Фото -->
+        <div class="photo-column">
+            <img src="img/dasha.jpg" alt="Dasha Mamba">
+        </div>
 
-.chapters a:hover {
-	background: #e0e0e0;
-}
-</style>
-</head>
-<body>
-	<h1>Welcome to my portfolio</h1>
-	<p>Меня зовут крутая крутышка. Я офигенный артист вот мои работы:</p>
+        <!-- Вторая колонка: Информация -->
+        <div class="info-column">
+            <p>Dasha Mamba, 35 y.o.</p>
+            <p>Currently Belgrad</p>
+            <p>Human or Serpent</p>
+            <p>Artist of Spaces</p>
+            <p>Sound Artist</p>
+        </div>
 
-	<div class="chapters">
-		<h2>Главы:</h2>
-		<table>
-			<tr>
-				<td><a href="glava1.html">Глава 1</a></td>
-				<td><img src="img/1-thumb.jpg" alt="Глава 1"></td>
-			</tr>
-			<tr>
-				<td><a href="glava1.html">Глава 2</a></td>
-				<td><img src="img/1-thumb.jpg" alt="Глава 2"></td>
-			</tr>
-			<tr>
-				<td><a href="glava1.html">Глава 3</a></td>
-				<td><img src="img/1-thumb.jpg" alt="Глава 3"></td>
-			</tr>
-		</table>
-	</div>
+        <!-- Третья колонка: Дополнительная информация -->
+        <div class="handwritten-column">
+            <p>Creative Director of the pop-up project "Tea Room"</p>
+            <p>Member of the Arma 17 / Mutabor / Rabitza collectives</p>
+            <p>Member of Radio Morpheus collectives</p>
+        </div>
+    </div>
+
+    <!-- Секция с главами -->
+    <div class="chapters-section">
+        <a href="glava1.html" class="chapter-link">
+            <h3>Глава 1</h3>
+            <img src="img/book1.gif" alt="Глава 1">
+        </a>
+
+        <a href="glava2.html" class="chapter-link">
+            <h3>Глава 2</h3>
+            <img src="img/book2.gif" alt="Глава 2">
+        </a>
+
+        <a href="glava3.html" class="chapter-link">
+            <h3>Глава 3</h3>
+            <img src="img/book3.gif" alt="Глава 3">
+        </a>
+    </div>
 </body>
 </html>
