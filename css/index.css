@@ -41,6 +41,11 @@ body {
     filter: contrast(1.2);
 }
 
+.description {
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+}
 /* Средняя колонка с информацией */
 .info-column {
     flex: 1;
@@ -86,7 +91,7 @@ body {
 @media (max-width: 768px) {
     .main-container {
         flex-direction: column;
-        padding: 30px 20px;
+        /* padding: 30px 20px; */
         gap: 25px;
     }
 
@@ -105,7 +110,7 @@ body {
 /* Адаптивность для мобильных */
 @media (max-width: 480px) {
     .main-container {
-        padding: 20px 15px;
+        /* padding: 20px 15px; */
         gap: 20px;
     }
 
@@ -123,10 +128,14 @@ body {
 
     .info-column p,
     .info-column .role {
-        font-size: 13px;
+        font-size: 16px;
     }
 
     .handwritten-column {
+        font-size: 16px;
+    }
+    
+    .description {
         font-size: 16px;
     }
 }
