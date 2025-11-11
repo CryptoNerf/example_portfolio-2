@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dir:*)",
       "Bash(mkdir:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []

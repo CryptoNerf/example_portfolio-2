@@ -27,3 +27,5 @@ npm-debug.log*
 
 # Trash folder
 trash/
+
+split_photos.py

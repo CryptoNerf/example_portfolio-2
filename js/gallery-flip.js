@@ -572,18 +572,29 @@ class PhotoFlipbook {
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Массив путей к фотографиям
-    // Первая картинка - передняя обложка, последняя - задняя обложка
-    const photos = [
-        'img/1.jpg',  // Передняя обложка
-        'img/2.jpg',
-        'img/3.jpg',
-        'img/4.jpg',
-        'img/5.jpg',
-        'img/6.jpg',
-        'img/7.jpg',
-        'img/1.jpg'   // Задняя обложка (дублируем первую картинку)
-    ];
+    // Массив путей к фотографиям для разворотов книги
+    const photos = [];
+
+    // Передняя обложка
+    photos.push('img/glava1/1.jpg');
+
+    // Добавляем развороты: левые и правые страницы
+    for (let i = 2; i <= 48; i++) {
+        const num = i.toString().padStart(2, '0');
+
+        // Левая страница (если существует)
+        const leftPath = `img/glava1/${num}_left.jpg`;
+        photos.push(leftPath);
+
+        // Правая страница
+        const rightPath = `img/glava1/${num}_right.jpg`;
+        photos.push(rightPath);
+    }
+
+    // Задняя обложка (дублируем обложку)
+    photos.push('img/glava1/1.jpg');
+
+    console.log('Всего страниц в книге:', photos.length);
 
     // Создание экземпляра flipbook
     const flipbook = new PhotoFlipbook(photos);
