@@ -11,6 +11,12 @@ class PhotoFlipbook {
         this.totalPages = photos.length;
         this.isRotated = false; // Состояние поворота книги
 
+        // Специальные индексы для эффекта hover страниц 27/28
+        this.page27LeftIndex = null;
+        this.page27RightIndex = null;
+        this.page28Images = { left: null, right: null }; // Предзагруженные изображения
+        this.findPage27Indices();
+
         // DOM элементы
         this.bookContainer = document.getElementById('book');
         this.bookWrapper = document.querySelector('.book-wrapper');
@@ -26,6 +32,33 @@ class PhotoFlipbook {
         this.closeGridBtn = document.getElementById('closeGrid');
 
         this.init();
+    }
+
+    /**
+     * Поиск индексов страниц 27_left и 27_right в массиве photos
+     */
+    findPage27Indices() {
+        this.photos.forEach((path, index) => {
+            if (path.includes('27_left.jpg')) {
+                this.page27LeftIndex = index;
+            } else if (path.includes('27_right.jpg')) {
+                this.page27RightIndex = index;
+            }
+        });
+        console.log('Индексы страниц 27:', this.page27LeftIndex, this.page27RightIndex);
+    }
+
+    /**
+     * Предзагрузка изображений 28_left и 28_right для мгновенного показа
+     */
+    preloadPage28Images() {
+        this.page28Images.left = new Image();
+        this.page28Images.left.src = 'img/glava1/28_left.jpg';
+
+        this.page28Images.right = new Image();
+        this.page28Images.right.src = 'img/glava1/28_right.jpg';
+
+        console.log('Изображения страницы 28 предзагружены');
     }
 
     /**
@@ -45,6 +78,9 @@ class PhotoFlipbook {
 
             // Создание сетки миниатюр
             this.createThumbnailGrid();
+
+            // Предзагрузка изображений для эффекта 27/28
+            this.preloadPage28Images();
 
             // Инициализация событий
             this.initEvents();
@@ -339,6 +375,11 @@ class PhotoFlipbook {
         // Поворот книги
         this.rotateBtn.addEventListener('click', () => this.toggleRotation());
 
+        // Эффект hover для страниц 27/28
+        // Навешиваем на сам элемент книги (stf__parent)
+        this.bookContainer.addEventListener('mouseenter', () => this.handlePage27Hover(true));
+        this.bookContainer.addEventListener('mouseleave', () => this.handlePage27Hover(false));
+
         // Клавиатура
         document.addEventListener('keydown', (e) => {
             if (this.gridModal.classList.contains('active')) {
@@ -470,6 +511,42 @@ class PhotoFlipbook {
     }
 
     /**
+     * Обработка hover эффекта для страниц 27/28
+     * При наведении на книгу на развороте 27 показываются изображения 28
+     */
+    handlePage27Hover(isHovering) {
+        // Проверяем, находимся ли мы на развороте 27
+        // Разворот 27 виден когда currentPage равен индексу 27_left
+        if (this.currentPage !== this.page27LeftIndex ||
+            this.page27LeftIndex === null ||
+            this.page27RightIndex === null) {
+            return;
+        }
+
+        // Получаем DOM элементы страниц
+        const pages = this.bookContainer.querySelectorAll('.page');
+        const page27Left = pages[this.page27LeftIndex];
+        const page27Right = pages[this.page27RightIndex];
+
+        if (!page27Left || !page27Right) return;
+
+        const img27Left = page27Left.querySelector('img');
+        const img27Right = page27Right.querySelector('img');
+
+        if (!img27Left || !img27Right) return;
+
+        if (isHovering) {
+            // При наведении показываем картинки 28
+            img27Left.src = 'img/glava1/28_left.jpg';
+            img27Right.src = 'img/glava1/28_right.jpg';
+        } else {
+            // При уходе курсора возвращаем картинки 27
+            img27Left.src = 'img/glava1/27_left.jpg';
+            img27Right.src = 'img/glava1/27_right.jpg';
+        }
+    }
+
+    /**
      * Переключение поворота книги
      */
     toggleRotation() {
@@ -581,6 +658,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавляем развороты: левые и правые страницы
     for (let i = 2; i <= 48; i++) {
         const num = i.toString().padStart(2, '0');
+
+        // Пропускаем страницы 28 (они будут показываться при hover на страницах 27)
+        if (i === 28) continue;
 
         // Левая страница (если существует)
         const leftPath = `img/glava1/${num}_left.jpg`;
