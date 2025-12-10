@@ -17,9 +17,26 @@ class PhotoFlipbook {
         this.page28Images = { left: null, right: null }; // Предзагруженные изображения
         this.findPage27Indices();
 
+        // Режим увеличения
+        this.zoomModeActive = false;
+        this.currentZoomLevel = 1;
+        this.zoomStep = 0.25;
+        this.minZoom = 1;
+        this.maxZoom = 3;
+        this.isDragging = false;
+        this.dragStartX = 0;
+        this.dragStartY = 0;
+        this.imageOffsetX = 0;
+        this.imageOffsetY = 0;
+        this.imageRotation = 0; // Угол поворота изображения в градусах
+
+        // Флаг для отслеживания анимации страниц 27/28
+        this.page27AnimationTriggered = false;
+
         // DOM элементы
         this.bookContainer = document.getElementById('book');
         this.bookWrapper = document.querySelector('.book-wrapper');
+        this.zoomOverlay = document.getElementById('zoomOverlay');
         this.currentPhotoSpan = document.getElementById('currentPhoto');
         this.totalPhotosSpan = document.getElementById('totalPhotos');
         this.progressSlider = document.getElementById('progressSlider');
@@ -27,9 +44,21 @@ class PhotoFlipbook {
         this.nextPageBtn = document.getElementById('nextPageBtn');
         this.gridBtn = document.getElementById('gridBtn');
         this.rotateBtn = document.getElementById('rotateBtn');
+        this.zoomBtn = document.getElementById('zoomBtn');
         this.gridModal = document.getElementById('gridModal');
         this.gridContainer = document.getElementById('gridContainer');
         this.closeGridBtn = document.getElementById('closeGrid');
+
+        // Элементы модального окна увеличения
+        this.zoomModal = document.getElementById('zoomModal');
+        this.zoomContainer = document.getElementById('zoomContainer');
+        this.zoomImage = document.getElementById('zoomImage');
+        this.closeZoomBtn = document.getElementById('closeZoom');
+        this.zoomInBtn = document.getElementById('zoomInBtn');
+        this.zoomOutBtn = document.getElementById('zoomOutBtn');
+        this.rotateImageBtn = document.getElementById('rotateImageBtn');
+        this.zoomResetBtn = document.getElementById('zoomResetBtn');
+        this.zoomLevelSpan = document.getElementById('zoomLevel');
 
         this.init();
     }
@@ -298,6 +327,8 @@ class PhotoFlipbook {
             this.currentPage = e.data;
             this.updateControls();
             this.adjustBookWrapper();
+            // Триггер анимации страниц 27/28
+            this.checkAndTriggerPage27Animation();
         });
 
         this.pageFlip.on('changeState', () => {
@@ -375,13 +406,42 @@ class PhotoFlipbook {
         // Поворот книги
         this.rotateBtn.addEventListener('click', () => this.toggleRotation());
 
-        // Эффект hover для страниц 27/28
-        // Навешиваем на сам элемент книги (stf__parent)
-        this.bookContainer.addEventListener('mouseenter', () => this.handlePage27Hover(true));
-        this.bookContainer.addEventListener('mouseleave', () => this.handlePage27Hover(false));
+        // Режим увеличения
+        this.zoomBtn.addEventListener('click', () => this.toggleZoomMode());
+
+        // Клик по overlay в режиме увеличения
+        this.zoomOverlay.addEventListener('click', (e) => this.handleOverlayClick(e));
+
+        // Управление модальным окном увеличения
+        this.closeZoomBtn.addEventListener('click', () => this.closeZoomModal());
+        this.zoomInBtn.addEventListener('click', () => this.zoomIn());
+        this.zoomOutBtn.addEventListener('click', () => this.zoomOut());
+        this.rotateImageBtn.addEventListener('click', () => this.rotateImage());
+        this.zoomResetBtn.addEventListener('click', () => this.resetZoom());
+
+        // Перетаскивание изображения в модальном окне
+        this.zoomContainer.addEventListener('mousedown', (e) => this.startDrag(e));
+        this.zoomContainer.addEventListener('mousemove', (e) => this.drag(e));
+        this.zoomContainer.addEventListener('mouseup', () => this.endDrag());
+        this.zoomContainer.addEventListener('mouseleave', () => this.endDrag());
+
+        // Зум колесиком мыши
+        this.zoomContainer.addEventListener('wheel', (e) => this.handleWheel(e));
+
+        // Закрытие по клику на фон
+        this.zoomModal.addEventListener('click', (e) => {
+            if (e.target === this.zoomModal) {
+                this.closeZoomModal();
+            }
+        });
 
         // Клавиатура
         document.addEventListener('keydown', (e) => {
+            if (this.zoomModal.classList.contains('active')) {
+                if (e.key === 'Escape') this.closeZoomModal();
+                return;
+            }
+
             if (this.gridModal.classList.contains('active')) {
                 if (e.key === 'Escape') this.closeGrid();
                 return;
@@ -397,6 +457,10 @@ class PhotoFlipbook {
                 case 'g':
                 case 'G':
                     this.openGrid();
+                    break;
+                case 'z':
+                case 'Z':
+                    this.toggleZoomMode();
                     break;
             }
         });
@@ -511,38 +575,315 @@ class PhotoFlipbook {
     }
 
     /**
-     * Обработка hover эффекта для страниц 27/28
-     * При наведении на книгу на развороте 27 показываются изображения 28
+     * Проверка и запуск анимации для страниц 27/28
+     * Автоматически запускается при перелистывании на разворот 27
      */
-    handlePage27Hover(isHovering) {
+    checkAndTriggerPage27Animation() {
         // Проверяем, находимся ли мы на развороте 27
-        // Разворот 27 виден когда currentPage равен индексу 27_left
-        if (this.currentPage !== this.page27LeftIndex ||
-            this.page27LeftIndex === null ||
-            this.page27RightIndex === null) {
-            return;
+        if (this.currentPage === this.page27LeftIndex &&
+            this.page27LeftIndex !== null &&
+            this.page27RightIndex !== null &&
+            !this.page27AnimationTriggered) {
+
+            // Запускаем анимацию через небольшую задержку для плавности
+            setTimeout(() => {
+                this.triggerPage27FadeIn();
+            }, 300);
         }
 
-        // Получаем DOM элементы страниц
+        // Сбрасываем флаг если ушли со страницы 27
+        if (this.currentPage !== this.page27LeftIndex) {
+            this.page27AnimationTriggered = false;
+            this.removePage27Overlays();
+        }
+    }
+
+    /**
+     * Запуск анимации появления страниц 28 поверх страниц 27
+     */
+    triggerPage27FadeIn() {
+        // Получаем DOM элементы страниц 27
         const pages = this.bookContainer.querySelectorAll('.page');
         const page27Left = pages[this.page27LeftIndex];
         const page27Right = pages[this.page27RightIndex];
 
         if (!page27Left || !page27Right) return;
 
-        const img27Left = page27Left.querySelector('img');
-        const img27Right = page27Right.querySelector('img');
+        // Создаем оверлеи для левой и правой страниц
+        const overlayLeft = document.createElement('div');
+        overlayLeft.className = 'page-overlay page-overlay-left';
+        overlayLeft.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            z-index: 10;
+            pointer-events: none;
+        `;
 
-        if (!img27Left || !img27Right) return;
+        const overlayRight = document.createElement('div');
+        overlayRight.className = 'page-overlay page-overlay-right';
+        overlayRight.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            z-index: 10;
+            pointer-events: none;
+        `;
 
-        if (isHovering) {
-            // При наведении показываем картинки 28
-            img27Left.src = 'img/glava1/28_left.jpg';
-            img27Right.src = 'img/glava1/28_right.jpg';
+        // Создаем изображения для оверлеев
+        const imgLeft = document.createElement('img');
+        imgLeft.src = 'img/glava1/28_left.jpg';
+        imgLeft.style.cssText = `
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        `;
+
+        const imgRight = document.createElement('img');
+        imgRight.src = 'img/glava1/28_right.jpg';
+        imgRight.style.cssText = `
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        `;
+
+        overlayLeft.appendChild(imgLeft);
+        overlayRight.appendChild(imgRight);
+
+        // Устанавливаем position: relative для родительских элементов
+        page27Left.style.position = 'relative';
+        page27Right.style.position = 'relative';
+
+        // Добавляем оверлеи на страницы
+        page27Left.appendChild(overlayLeft);
+        page27Right.appendChild(overlayRight);
+
+        // Запускаем анимацию через небольшую задержку
+        setTimeout(() => {
+            overlayLeft.style.opacity = '1';
+            overlayRight.style.opacity = '1';
+        }, 50);
+
+        this.page27AnimationTriggered = true;
+    }
+
+    /**
+     * Удаление оверлеев со страниц 27
+     */
+    removePage27Overlays() {
+        const overlays = this.bookContainer.querySelectorAll('.page-overlay');
+        overlays.forEach(overlay => overlay.remove());
+    }
+
+    /**
+     * Переключение режима увеличения
+     */
+    toggleZoomMode() {
+        this.zoomModeActive = !this.zoomModeActive;
+
+        if (this.zoomModeActive) {
+            this.zoomBtn.classList.add('active');
+            this.bookWrapper.classList.add('zoom-mode');
+            this.zoomBtn.title = 'Выключить режим увеличения';
         } else {
-            // При уходе курсора возвращаем картинки 27
-            img27Left.src = 'img/glava1/27_left.jpg';
-            img27Right.src = 'img/glava1/27_right.jpg';
+            this.zoomBtn.classList.remove('active');
+            this.bookWrapper.classList.remove('zoom-mode');
+            this.zoomBtn.title = 'Увеличить страницу';
+        }
+    }
+
+    /**
+     * Обработка клика по overlay в режиме увеличения
+     * Открывает модальное окно с текущей страницей
+     */
+    handleOverlayClick(e) {
+        // Предотвращаем любое взаимодействие с книгой
+        e.preventDefault();
+        e.stopPropagation();
+
+        console.log('Клик по overlay в режиме увеличения');
+
+        // Определяем, по какой стороне книги кликнули
+        const bookRect = this.bookWrapper.getBoundingClientRect();
+        const bookCenterX = bookRect.left + bookRect.width / 2;
+        const clickX = e.clientX;
+
+        console.log('Клик X:', clickX, 'Центр книги X:', bookCenterX);
+
+        let pageToOpen;
+
+        // Если первая страница (обложка) - всегда открываем её
+        if (this.currentPage === 0) {
+            pageToOpen = 0;
+        }
+        // Если последняя страница (задняя обложка) - всегда открываем её
+        else if (this.currentPage === this.totalPages - 1) {
+            pageToOpen = this.currentPage;
+        }
+        // Разворот - определяем левую или правую страницу
+        else {
+            if (clickX < bookCenterX) {
+                // Клик по левой стороне - левая страница
+                pageToOpen = this.currentPage;
+                console.log('Левая страница:', pageToOpen);
+            } else {
+                // Клик по правой стороне - правая страница
+                pageToOpen = this.currentPage + 1;
+                console.log('Правая страница:', pageToOpen);
+            }
+        }
+
+        // Проверяем что индекс корректный
+        if (pageToOpen >= 0 && pageToOpen < this.photos.length) {
+            console.log('Открываем страницу:', pageToOpen, this.photos[pageToOpen]);
+            this.openZoomModal(this.photos[pageToOpen]);
+            this.toggleZoomMode();
+        }
+    }
+
+    /**
+     * Открыть модальное окно увеличения
+     */
+    openZoomModal(imageSrc) {
+        this.zoomImage.src = imageSrc;
+        this.zoomModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.resetZoom();
+    }
+
+    /**
+     * Закрыть модальное окно увеличения
+     */
+    closeZoomModal() {
+        this.zoomModal.classList.remove('active');
+        document.body.style.overflow = '';
+        this.resetZoom();
+    }
+
+    /**
+     * Увеличить масштаб
+     */
+    zoomIn() {
+        if (this.currentZoomLevel < this.maxZoom) {
+            this.currentZoomLevel += this.zoomStep;
+            this.applyZoom();
+        }
+    }
+
+    /**
+     * Уменьшить масштаб
+     */
+    zoomOut() {
+        if (this.currentZoomLevel > this.minZoom) {
+            this.currentZoomLevel -= this.zoomStep;
+            if (this.currentZoomLevel < this.minZoom) {
+                this.currentZoomLevel = this.minZoom;
+            }
+            this.applyZoom();
+        }
+    }
+
+    /**
+     * Сбросить масштаб
+     */
+    resetZoom() {
+        this.currentZoomLevel = this.minZoom;
+        this.imageOffsetX = 0;
+        this.imageOffsetY = 0;
+        this.imageRotation = 0;
+        this.applyZoom();
+    }
+
+    /**
+     * Повернуть изображение на 90 градусов
+     */
+    rotateImage() {
+        this.imageRotation = (this.imageRotation + 90) % 360;
+        this.applyZoom();
+    }
+
+    /**
+     * Применить масштаб к изображению
+     */
+    applyZoom() {
+        // Применяем трансформацию: сдвиг, масштабирование, поворот
+        this.zoomImage.style.transform = `translate(${this.imageOffsetX}px, ${this.imageOffsetY}px) scale(${this.currentZoomLevel}) rotate(${this.imageRotation}deg)`;
+        this.zoomLevelSpan.textContent = `${Math.round(this.currentZoomLevel * 100)}%`;
+
+        // Меняем курсор в зависимости от масштаба
+        if (this.currentZoomLevel > 1) {
+            this.zoomContainer.style.cursor = 'grab';
+        } else {
+            this.zoomContainer.style.cursor = 'default';
+        }
+    }
+
+    /**
+     * Начать перетаскивание изображения
+     */
+    startDrag(e) {
+        if (this.currentZoomLevel <= 1) return;
+
+        // Игнорируем клики по кнопкам
+        if (e.target.closest('button')) return;
+
+        e.preventDefault();
+        this.isDragging = true;
+        this.dragStartX = e.clientX;
+        this.dragStartY = e.clientY;
+        this.zoomContainer.style.cursor = 'grabbing';
+    }
+
+    /**
+     * Перетаскивание изображения
+     */
+    drag(e) {
+        if (!this.isDragging) return;
+
+        e.preventDefault();
+
+        const deltaX = e.clientX - this.dragStartX;
+        const deltaY = e.clientY - this.dragStartY;
+
+        this.imageOffsetX += deltaX;
+        this.imageOffsetY += deltaY;
+
+        this.dragStartX = e.clientX;
+        this.dragStartY = e.clientY;
+
+        this.applyZoom();
+    }
+
+    /**
+     * Завершить перетаскивание изображения
+     */
+    endDrag() {
+        if (this.isDragging) {
+            this.isDragging = false;
+            this.zoomContainer.style.cursor = this.currentZoomLevel > 1 ? 'grab' : 'default';
+        }
+    }
+
+    /**
+     * Обработка колесика мыши для зума
+     */
+    handleWheel(e) {
+        e.preventDefault();
+
+        if (e.deltaY < 0) {
+            // Прокрутка вверх - увеличение
+            this.zoomIn();
+        } else {
+            // Прокрутка вниз - уменьшение
+            this.zoomOut();
         }
     }
 
@@ -617,6 +958,8 @@ class PhotoFlipbook {
             this.currentPage = e.data;
             this.updateControls();
             this.adjustBookWrapper();
+            // Триггер анимации страниц 27/28
+            this.checkAndTriggerPage27Animation();
         });
 
         // Переходим на сохраненную страницу

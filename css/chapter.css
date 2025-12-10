@@ -1,0 +1,101 @@
+/* ==========================================
+   Chapter Page - Стили
+   ========================================== */
+
+.chapters-title {
+    font-family: Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #313431;
+    margin-bottom: 30px;
+}
+
+.chapter-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Левая колонка с изображением книги */
+.chapter-image-column {
+    flex: 0 0 280px;
+}
+
+.chapter-image-column a {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.chapter-image-column a:hover {
+    opacity: 0.7;
+}
+
+.chapter-image-column img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Правая колонка с информацией */
+.chapter-info-column {
+    flex: 1;
+}
+
+.chapter-header {
+    margin-bottom: 20px;
+}
+
+.chapter-number,
+.chapter-name {
+    font-family: Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #313431;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.chapter-description {
+    font-family: Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #313431;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ==========================================
+   Адаптивность
+   ========================================== */
+
+/* Планшеты */
+@media (max-width: 768px) {
+    .chapter-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .chapter-image-column {
+        flex: 0 0 auto;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 480px) {
+    .chapter-container {
+        gap: 20px;
+    }
+
+    .chapter-image-column {
+        max-width: 100%;
+    }
+
+    .chapters-title,
+    .chapter-number,
+    .chapter-name,
+    .chapter-description {
+        font-size: 12px;
+    }
+}
