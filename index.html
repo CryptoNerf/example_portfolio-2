@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dasha Mamba - Portfolio</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/intro.css">
 </head>
 <body>
+    <!-- Intro Animation Overlay -->
+    <div class="intro-overlay" id="introOverlay">
+        <div class="ghost-pages" id="ghostPages">
+            <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-1">
+            <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-2">
+            <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-3">
+        </div>
+        <img src="img/beginpaper.jpg" alt="" class="final-page" id="finalPage">
+        <div class="click-text" id="clickText">CLICK HERE</div>
+    </div>
     <!-- Header - статичный на всех страницах -->
     <header>
         <!-- Первая колонка: Фото -->
@@ -64,5 +75,13 @@
         </a>
     </div>
     -->
+
+    <!-- Design Mockup Overlay (для верстки) -->
+    <div class="mockup-overlay" id="mockupOverlay">
+        <img src="img/Asset.png" alt="Design Mockup">
+    </div>
+
+    <script src="js/intro.js"></script>
+    <script src="js/mockup-toggle.js"></script>
 </body>
 </html>
