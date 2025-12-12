@@ -16,24 +16,24 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 40px 20px;
-    gap: 60px;
+    padding: 61px 20px;
+    gap: 47px;
 }
 
 /* ==========================================
    Header (Статичный на всех страницах)
    ========================================== */
 header {
-    max-width: 800px;
+    max-width: 630px;
     width: 100%;
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: flex-start;
 }
 
 /* Колонка с фото */
 .photo-column {
-    flex: 0 0 250px;
+    flex: 0 0 175px;
 }
 
 .photo-column img {
@@ -46,12 +46,22 @@ header {
    Секция контента
    ========================================== */
 .content-section {
-    max-width: 700px;
+    max-width: 540px;
     width: 100%;
     font-family: Courier, monospace;
-    color: #313431;
-    font-size: 14px;
-    font-weight: 700;
+    color: #000000;
+    font-size: 13px;
+    font-weight: 400;
+    /* line-height: 1.5; */
+}
+
+.content-section a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.content-section a:hover {
+    text-decoration: underline;
 }
 
 /* Средняя колонка с информацией */
@@ -62,7 +72,14 @@ header {
 
 .info-column p {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 32px;
+    font-size: 28px;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.8px;
+}
+
+.info-column p.spacer {
+    height: 19px;
 }
 
 /* Правая колонка с рукописным текстом */
@@ -77,25 +94,34 @@ header {
 }
 
 .description-text {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 13px;
+    /* line-height: 1.4; */
     margin-top: 15px;
+    /* text-align: justify; */
 }
 
 .links {
-    margin-top: 16px;
+    margin-top: 41px;
+}
+
+.links p {
+    margin-bottom: 8px;
 }
 
 .lastword {
-    margin-top: 80px;
+    margin-top: 130px;
     position: relative;
 }
 
+.lastword p {
+    font-size: 13px;
+}
+
 .logo {
-    width: 280px;
+    width: 220px;
     height: auto;
     position: absolute;
-    right: -10px;
+    right: -70px;
     top: -40px;
 }
 /* ==========================================
@@ -145,7 +171,7 @@ header {
    ========================================== */
 
 .chapters-section {
-    max-width: 800px;
+    max-width: 630px;
     width: 100%;
     display: flex;
     gap: 30px;
@@ -207,7 +233,7 @@ header {
    Footer (На будущее)
    ========================================== */
 footer {
-    max-width: 800px;
+    max-width: 630px;
     width: 100%;
     text-align: center;
     padding-top: 40px;

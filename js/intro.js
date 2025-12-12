@@ -9,6 +9,7 @@ class IntroAnimation {
         this.clickText = document.getElementById('clickText');
         this.ghostPagesContainer = document.getElementById('ghostPages');
         this.finalPage = document.getElementById('finalPage');
+        this.greenOverlay = document.getElementById('greenOverlay');
 
         this.init();
     }
@@ -37,9 +38,9 @@ class IntroAnimation {
             this.finalPage.classList.add('visible');
         }, 3000);
 
-        // Шаг 3: Пауза 2 секунды после объединения, затем начинаем зеленение
+        // Шаг 3: Пауза 2 секунды после объединения, затем начинаем зеленение экрана
         setTimeout(() => {
-            this.finalPage.classList.add('greening');
+            this.greenOverlay.classList.add('greening');
         }, 5000); // 3 секунды движения + 2 секунды паузы
 
         // Шаг 4: После зеленения (еще 2 секунды) показываем текст "CLICK HERE"
