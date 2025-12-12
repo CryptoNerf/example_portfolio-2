@@ -1,0 +1,46 @@
+/* ==========================================
+   About Page Styles
+   ========================================== */
+
+.about-content {
+    max-width: 630px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-title {
+    font-family: Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #313431;
+    margin: 0;
+    align-self: flex-start;
+    padding-left: 80px;
+}
+
+.about-image-link {
+    display: block;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.about-image-link:hover {
+    opacity: 0.8;
+}
+
+.about-image {
+    width: 400px;
+    height: auto;
+    display: block;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .about-image {
+        width: 100%;
+        max-width: 400px;
+    }
+}

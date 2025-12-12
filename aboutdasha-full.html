@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information about me - Dasha Mamba</title>
+    <link rel="stylesheet" href="css/about-full.css">
+    <link rel="stylesheet" href="css/back-button.css">
+</head>
+<body>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">&lt;--</a>
+    <div class="fullscreen-image-container">
+        <!-- Полупрозрачные дергающиеся копии -->
+        <div class="ghost-images" id="ghostImages">
+            <img src="img/aboutdasha.jpg" alt="" class="ghost-image ghost-image-1">
+            <img src="img/aboutdasha.jpg" alt="" class="ghost-image ghost-image-2">
+            <img src="img/aboutdasha.jpg" alt="" class="ghost-image ghost-image-3">
+        </div>
+
+        <!-- Финальное изображение -->
+        <img src="img/aboutdasha.jpg" alt="About Dasha Mamba" class="fullscreen-image final-image" id="finalImage">
+    </div>
+
+    <script>
+        // Запускаем глитч эффект при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            const ghostImages = document.getElementById('ghostImages');
+            const finalImage = document.getElementById('finalImage');
+
+            // Через 2.5 секунды скрываем полупрозрачные копии и показываем финальное изображение
+            setTimeout(() => {
+                ghostImages.style.display = 'none';
+                finalImage.classList.add('visible');
+            }, 2500);
+        });
+    </script>
+</body>
+</html>

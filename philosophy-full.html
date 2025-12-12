@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy of my work - Dasha Mamba</title>
+    <link rel="stylesheet" href="css/about-full.css">
+    <link rel="stylesheet" href="css/gallery-nav.css">
+    <link rel="stylesheet" href="css/back-button.css">
+</head>
+<body>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">&lt;--</a>
+    <div class="fullscreen-image-container">
+        <!-- Полупрозрачные дергающиеся копии -->
+        <div class="ghost-images" id="ghostImages">
+            <img src="img/philosophy.jpg" alt="" class="ghost-image ghost-image-1">
+            <img src="img/philosophy.jpg" alt="" class="ghost-image ghost-image-2">
+            <img src="img/philosophy.jpg" alt="" class="ghost-image ghost-image-3">
+        </div>
+
+        <!-- Финальное изображение -->
+        <img src="img/philosophy.jpg" alt="Philosophy of my work" class="fullscreen-image final-image" id="finalImage">
+
+        <!-- Стрелки навигации -->
+        <div class="nav-arrow nav-arrow-left" id="navLeft" style="display: none;">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <path d="M35 15L20 30L35 45" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="nav-arrow nav-arrow-right" id="navRight">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <path d="M25 15L40 30L25 45" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // Запускаем глитч эффект при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            const ghostImages = document.getElementById('ghostImages');
+            const finalImage = document.getElementById('finalImage');
+            const navLeft = document.getElementById('navLeft');
+            const navRight = document.getElementById('navRight');
+
+            const images = [
+                'img/philosophy.jpg',
+                'img/philosophy2.jpg',
+                'img/philosophy3.jpg'
+            ];
+            let currentIndex = 0;
+
+            // Через 2.5 секунды скрываем полупрозрачные копии и показываем финальное изображение
+            setTimeout(() => {
+                ghostImages.style.display = 'none';
+                finalImage.classList.add('visible');
+            }, 2500);
+
+            // Функция обновления стрелок
+            function updateArrows() {
+                // Стрелка влево видна если не на первом изображении
+                navLeft.style.display = currentIndex > 0 ? 'flex' : 'none';
+                // Стрелка вправо видна если не на последнем изображении
+                navRight.style.display = currentIndex < images.length - 1 ? 'flex' : 'none';
+            }
+
+            // Переход к следующему изображению
+            navRight.addEventListener('click', () => {
+                if (currentIndex < images.length - 1) {
+                    currentIndex++;
+                    finalImage.src = images[currentIndex];
+                    updateArrows();
+                }
+            });
+
+            // Переход к предыдущему изображению
+            navLeft.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    finalImage.src = images[currentIndex];
+                    updateArrows();
+                }
+            });
+
+            // Инициализация стрелок
+            updateArrows();
+        });
+    </script>
+</body>
+</html>

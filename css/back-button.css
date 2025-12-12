@@ -1,0 +1,31 @@
+/* ==========================================
+   Back Button
+   ========================================== */
+
+.back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    font-family: Courier, monospace;
+    /* font-size: 24px; */
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    user-select: none;
+}
+
+/* .back-button:hover {
+    opacity: 0.6;
+} */
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .back-button {
+        top: 20px;
+        left: 20px;
+        font-size: 20px;
+    }
+}

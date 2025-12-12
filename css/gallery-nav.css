@@ -1,0 +1,50 @@
+/* ==========================================
+   Gallery Navigation Arrows
+   ========================================== */
+
+.nav-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+.nav-arrow:hover {
+    opacity: 0.6;
+}
+
+.nav-arrow-left {
+    left: 40px;
+}
+
+.nav-arrow-right {
+    right: 40px;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .nav-arrow {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-arrow-left {
+        left: 20px;
+    }
+
+    .nav-arrow-right {
+        right: 20px;
+    }
+
+    .nav-arrow svg {
+        width: 50px;
+        height: 50px;
+    }
+}
