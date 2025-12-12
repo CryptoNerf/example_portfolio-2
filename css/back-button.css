@@ -24,8 +24,14 @@
 /* Адаптивность для мобильных */
 @media (max-width: 768px) {
     .back-button {
+        top: 25px;
+        left: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
         top: 20px;
         left: 20px;
-        font-size: 20px;
     }
 }

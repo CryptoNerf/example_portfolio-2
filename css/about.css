@@ -39,8 +39,33 @@
 
 /* Адаптивность */
 @media (max-width: 768px) {
+    .about-content {
+        gap: 30px;
+    }
+
+    .about-title {
+        padding-left: 40px;
+        font-size: 13px;
+    }
+
     .about-image {
         width: 100%;
-        max-width: 400px;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content {
+        gap: 25px;
+    }
+
+    .about-title {
+        padding-left: 20px;
+        font-size: 12px;
+    }
+
+    .about-image {
+        width: 100%;
+        max-width: 300px;
     }
 }

@@ -242,3 +242,33 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+/* ==========================================
+   Адаптивность
+   ========================================== */
+
+@media (max-width: 768px) {
+    .ghost-page,
+    .final-page {
+        height: 120vh;
+    }
+
+    .click-text {
+        font-size: 64px;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ghost-page,
+    .final-page {
+        height: 100vh;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .click-text {
+        font-size: 48px;
+        letter-spacing: 1px;
+    }
+}

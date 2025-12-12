@@ -31,20 +31,40 @@
 /* Адаптивность для мобильных */
 @media (max-width: 768px) {
     .nav-arrow {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
     }
 
     .nav-arrow-left {
-        left: 20px;
+        left: 15px;
     }
 
     .nav-arrow-right {
-        right: 20px;
+        right: 15px;
     }
 
     .nav-arrow svg {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-arrow-left {
+        left: 10px;
+    }
+
+    .nav-arrow-right {
+        right: 10px;
+    }
+
+    .nav-arrow svg {
+        width: 40px;
+        height: 40px;
     }
 }
