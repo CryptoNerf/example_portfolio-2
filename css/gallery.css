@@ -919,13 +919,14 @@ body {
     }
 
     .controls {
-        padding: 8px 10px;
-        gap: 6px;
+        padding: 8px 6px;
+        gap: 4px;
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 10px;
-        bottom: 80px;
+        bottom: 100px;
         border-radius: 10px;
+        max-width: 95vw;
     }
 
     .progress-slider {
@@ -1005,14 +1006,25 @@ body {
     }
 
     .controls {
-        padding: 8px 10px;
-        gap: 8px;
+        padding: 8px 4px;
+        gap: 3px;
+        max-width: 98vw;
     }
 
     .grid-btn,
+    .rotate-btn,
+    .zoom-btn,
     .nav-control-btn {
-        width: 32px;
-        height: 32px;
+        width: 26px;
+        height: 26px;
+    }
+
+    .grid-btn svg,
+    .rotate-btn svg,
+    .zoom-btn svg,
+    .nav-control-btn svg {
+        width: 14px;
+        height: 14px;
     }
 
     .photo-counter {
