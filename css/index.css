@@ -181,6 +181,10 @@ header {
         align-self: flex-start;
     }
 
+    .info-column p {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+   }
     .handwritten-column {
         text-align: center;
     }
@@ -202,7 +206,7 @@ header {
     }
 
     .info-column p {
-        font-size: 20px;
+        font-size: 32px;
         letter-spacing: -0.5px;
     }
 

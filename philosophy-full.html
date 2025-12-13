@@ -10,10 +10,15 @@
 </head>
 <body>
     <!-- Back Button -->
-    <a href="javascript:history.back()" class="back-button">&lt;--</a>
+    <button class="back-button" onclick="history.back()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Back
+    </button>
     <div class="fullscreen-image-container">
         <!-- Изображение с глюк-эффектом -->
-        <img src="img/philosophy.jpg" alt="Philosophy of my work" class="fullscreen-image glitch-on-load" id="mainImage">
+        <img src="img/philosophy.jpg" alt="Philosophy of my work" class="fullscreen-image" id="mainImage">
 
         <!-- Стрелки навигации -->
         <div class="nav-arrow nav-arrow-left" id="navLeft" style="display: none;">
@@ -29,7 +34,7 @@
     </div>
 
     <script>
-        // Запускаем глитч эффект при загрузке страницы
+        // Запускаем глитч эффект при загрузке страницы с задержкой
         document.addEventListener('DOMContentLoaded', () => {
             const mainImage = document.getElementById('mainImage');
             const navLeft = document.getElementById('navLeft');
@@ -42,10 +47,15 @@
             ];
             let currentIndex = 0;
 
-            // Убираем класс анимации после завершения
+            // Добавляем класс глюка через 1 секунду после загрузки
             setTimeout(() => {
-                mainImage.classList.remove('glitch-on-load');
-            }, 150);
+                mainImage.classList.add('glitch-on-load');
+
+                // Убираем класс анимации после завершения
+                setTimeout(() => {
+                    mainImage.classList.remove('glitch-on-load');
+                }, 150);
+            }, 1000);
 
             // Функция обновления стрелок
             function updateArrows() {

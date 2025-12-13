@@ -192,7 +192,7 @@
     opacity: 0;
     pointer-events: none;
     z-index: 5;
-    mix-blend-mode: multiply;
+    mix-blend-mode: color;
 }
 
 .green-overlay::before {

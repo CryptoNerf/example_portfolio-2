@@ -10,7 +10,12 @@
 </head>
 <body>
     <!-- Back Button -->
-    <a href="javascript:history.back()" class="back-button">&lt;--</a>
+    <button class="back-button" onclick="history.back()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Back
+    </button>
     <!-- Header - статичный на всех страницах -->
     <header>
         <!-- Первая колонка: Фото -->
