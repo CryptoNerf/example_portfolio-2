@@ -32,38 +32,47 @@ body {
 }
 
 /* ==========================================
-   Кнопка назад
+   Кнопка назад (Windows 95 Style)
    ========================================== */
 
 .back-button {
     position: absolute;
     top: 24px;
     left: 24px;
-    width: 48px;
-    height: 48px;
-    background: white;
-    border: none;
-    border-radius: 50%;
+    min-width: 48px;
+    height: 32px;
+    padding: 0 12px;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
+    gap: 6px;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(128, 128, 128, 0.5);
+    transition: none;
     z-index: 100;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
 }
 
 .back-button:hover {
-    background: #f0f0f0;
-    transform: scale(1.05);
+    background: linear-gradient(180deg, #e8e8e8 0%, #c8c8c8 100%);
 }
 
 .back-button:active {
-    transform: scale(0.95);
-}
-
-.back-button svg {
-    color: #333;
+    border-color: #000000 #ffffff #ffffff #000000;
+    box-shadow:
+        inset -1px -1px 0 rgba(255, 255, 255, 0.8),
+        inset 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding: 2px 10px 0 14px;
 }
 
 /* ==========================================
@@ -143,7 +152,7 @@ body {
 }
 
 /* ==========================================
-   Панель управления
+   Панель управления (Windows 95 / Macintosh Style)
    ========================================== */
 
 .controls {
@@ -153,12 +162,18 @@ body {
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 16px;
-    background: white;
-    padding: 16px 24px;
-    border-radius: 50px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    gap: 8px;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    padding: 8px 12px;
+    border-radius: 0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.2),
+        2px 2px 4px rgba(0, 0, 0, 0.3);
     z-index: 50;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
 }
 
 /* Кнопка сетки и навигации */
@@ -166,69 +181,96 @@ body {
 .rotate-btn,
 .zoom-btn,
 .nav-control-btn {
-    width: 40px;
-    height: 40px;
-    background: #f5f5f5;
-    border: none;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(128, 128, 128, 0.5);
+    transition: none;
 }
 
 .grid-btn:hover,
 .rotate-btn:hover,
 .zoom-btn:hover,
 .nav-control-btn:hover {
-    background: #e0e0e0;
-    transform: scale(1.05);
+    background: linear-gradient(180deg, #e8e8e8 0%, #c8c8c8 100%);
 }
 
 .grid-btn:active,
 .rotate-btn:active,
 .zoom-btn:active,
 .nav-control-btn:active {
-    transform: scale(0.95);
+    border-color: #000000 #ffffff #ffffff #000000;
+    box-shadow:
+        inset -1px -1px 0 rgba(255, 255, 255, 0.8),
+        inset 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding: 2px 0 0 2px;
 }
 
 .grid-btn svg,
 .rotate-btn svg,
 .zoom-btn svg,
 .nav-control-btn svg {
-    color: #333;
+    color: #000000;
+    width: 18px;
+    height: 18px;
 }
 
 /* Активная кнопка поворота и увеличения */
 .rotate-btn.active,
 .zoom-btn.active {
-    background: #333;
+    background: linear-gradient(180deg, #000080 0%, #000060 100%);
+    border-color: #000000 #ffffff #ffffff #000000;
+    box-shadow:
+        inset -1px -1px 0 rgba(255, 255, 255, 0.3),
+        inset 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .rotate-btn.active svg,
 .zoom-btn.active svg {
-    color: white;
+    color: #ffffff;
 }
 
 .nav-control-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.5;
     cursor: not-allowed;
+    background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+}
+
+.nav-control-btn:disabled svg {
+    color: #808080;
 }
 
 .nav-control-btn:disabled:hover {
-    background: #f5f5f5;
-    transform: none;
+    background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
 }
 
-/* Слайдер прогресса */
+.nav-control-btn:disabled:active {
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(128, 128, 128, 0.5);
+    padding: 0;
+}
+
+/* Слайдер прогресса (Windows 95 Style) */
 .progress-slider {
-    width: 300px;
-    height: 4px;
+    width: 200px;
+    height: 20px;
     -webkit-appearance: none;
     appearance: none;
-    background: #e0e0e0;
-    border-radius: 2px;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #dfdfdf #dfdfdf #808080;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
     outline: none;
     cursor: pointer;
 }
@@ -236,43 +278,55 @@ body {
 .progress-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 16px;
+    width: 12px;
     height: 16px;
-    background: #333;
-    border-radius: 50%;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(128, 128, 128, 0.5);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: none;
 }
 
-.progress-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+.progress-slider::-webkit-slider-thumb:active {
+    border-color: #000000 #ffffff #ffffff #000000;
 }
 
 .progress-slider::-moz-range-thumb {
-    width: 16px;
+    width: 12px;
     height: 16px;
-    background: #333;
-    border-radius: 50%;
-    border: none;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(128, 128, 128, 0.5);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: none;
 }
 
-.progress-slider::-moz-range-thumb:hover {
-    transform: scale(1.2);
+.progress-slider::-moz-range-thumb:active {
+    border-color: #000000 #ffffff #ffffff #000000;
 }
 
 /* Счетчик фото */
 .photo-counter {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    min-width: 60px;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000000;
+    min-width: 50px;
     text-align: center;
+    padding: 4px 8px;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #dfdfdf #dfdfdf #808080;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================
-   Модальное окно с сеткой
+   Модальное окно с сеткой (Windows 95 Style)
    ========================================== */
 
 .grid-modal {
@@ -281,7 +335,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 1000;
     overflow-y: auto;
@@ -302,67 +356,92 @@ body {
     }
 }
 
-/* Заголовок сетки */
+/* Заголовок сетки (Windows 95 Title Bar) */
 .grid-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.95);
-    padding: 20px 40px;
+    background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+    padding: 4px 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1001;
-    backdrop-filter: blur(10px);
+    border-bottom: 2px solid;
+    border-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .grid-header h3 {
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    margin: 0;
+    padding: 4px 8px;
 }
 
 .close-grid {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    border-radius: 0;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 rgba(128, 128, 128, 0.5);
+    transition: none;
+    line-height: 1;
+    padding-bottom: 2px;
 }
 
 .close-grid:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
+    background: linear-gradient(180deg, #e8e8e8 0%, #c8c8c8 100%);
 }
 
-/* Сетка миниатюр */
+.close-grid:active {
+    border-color: #000000 #ffffff #ffffff #000000;
+    box-shadow:
+        inset -1px -1px 0 rgba(255, 255, 255, 0.8),
+        inset 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding: 2px 0 0 2px;
+}
+
+/* Сетка миниатюр (Windows 95 Style) */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
     padding: 20px;
+    background: #c0c0c0;
 }
 
 .grid-item {
     position: relative;
     aspect-ratio: 3/2;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: none;
+    border: 3px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow:
+        inset -1px -1px 0 rgba(255, 255, 255, 0.5),
+        inset 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .grid-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    border-color: #000000 #dfdfdf #dfdfdf #000000;
 }
 
 .grid-item img {
@@ -373,19 +452,29 @@ body {
 
 .grid-item .photo-number {
     position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
+    bottom: 4px;
+    right: 4px;
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+    color: #000000;
+    padding: 2px 6px;
+    border-radius: 0;
+    border: 1px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .grid-item.active {
-    outline: 3px solid white;
-    outline-offset: 2px;
+    outline: none;
+    border-color: #000080 #1084d0 #1084d0 #000080;
+    border-width: 4px;
+    box-shadow:
+        inset -2px -2px 0 rgba(255, 255, 255, 0.3),
+        inset 2px 2px 0 rgba(0, 0, 0, 0.5),
+        0 0 0 2px #000080;
 }
 
 /* ==========================================
@@ -567,10 +656,11 @@ body {
     }
 
     .back-button {
-        width: 40px;
-        height: 40px;
-        /* top: 10px;
-        left: 10px; */
+        height: 28px;
+        padding: 0 10px;
+        font-size: 10px;
+        top: 16px;
+        left: 16px;
     }
 
     .book-wrapper {
@@ -588,10 +678,9 @@ body {
     }
 
     .controls {
-        padding: 10px 12px;
-        gap: 8px;
+        padding: 6px 8px;
+        gap: 6px;
         flex-wrap: wrap;
-        /* max-width: 95vw; */
         justify-content: center;
         margin-top: 10px;
         bottom: 80px;
@@ -601,43 +690,59 @@ body {
         width: 100%;
         order: 3;
         flex-basis: 100%;
+        height: 18px;
     }
 
     .photo-counter {
         order: 4;
-        font-size: 13px;
+        font-size: 10px;
         flex-basis: 100%;
+        padding: 3px 6px;
     }
 
-    .grid-btn {
+    .grid-btn,
+    .rotate-btn,
+    .zoom-btn {
         order: 1;
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .grid-btn svg,
+    .rotate-btn svg,
+    .zoom-btn svg {
+        width: 16px;
+        height: 16px;
     }
 
     .nav-control-btn {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
+        order: 1;
     }
 
-    #prevPageBtn {
-        order: 2;
-    }
-
-    #nextPageBtn {
-        order: 2;
+    .nav-control-btn svg {
+        width: 16px;
+        height: 16px;
     }
 
     .grid-header {
-        padding: 16px 20px;
+        padding: 3px 4px;
     }
 
     .grid-header h3 {
-        font-size: 18px;
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    .close-grid {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
     }
 
     .grid-modal {
-        padding: 70px 16px 16px;
+        padding: 50px 16px 16px;
     }
 
     .grid-container {
@@ -658,8 +763,6 @@ body {
     .controls {
         padding: 8px 10px;
         gap: 8px;
-        border-radius: 20px;
-
     }
 
     .grid-btn,

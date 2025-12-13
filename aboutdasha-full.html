@@ -11,28 +11,19 @@
     <!-- Back Button -->
     <a href="javascript:history.back()" class="back-button">&lt;--</a>
     <div class="fullscreen-image-container">
-        <!-- Полупрозрачные дергающиеся копии -->
-        <div class="ghost-images" id="ghostImages">
-            <img src="img/aboutdasha.jpg" alt="" class="ghost-image ghost-image-1">
-            <img src="img/aboutdasha.jpg" alt="" class="ghost-image ghost-image-2">
-            <img src="img/aboutdasha.jpg" alt="" class="ghost-image ghost-image-3">
-        </div>
-
-        <!-- Финальное изображение -->
-        <img src="img/aboutdasha.jpg" alt="About Dasha Mamba" class="fullscreen-image final-image" id="finalImage">
+        <!-- Изображение с глюк-эффектом -->
+        <img src="img/aboutdasha.jpg" alt="About Dasha Mamba" class="fullscreen-image glitch-on-load" id="mainImage">
     </div>
 
     <script>
         // Запускаем глитч эффект при загрузке страницы
         document.addEventListener('DOMContentLoaded', () => {
-            const ghostImages = document.getElementById('ghostImages');
-            const finalImage = document.getElementById('finalImage');
+            const mainImage = document.getElementById('mainImage');
 
-            // Через 2.5 секунды скрываем полупрозрачные копии и показываем финальное изображение
+            // Убираем класс анимации после завершения
             setTimeout(() => {
-                ghostImages.style.display = 'none';
-                finalImage.classList.add('visible');
-            }, 2500);
+                mainImage.classList.remove('glitch-on-load');
+            }, 150);
         });
     </script>
 </body>

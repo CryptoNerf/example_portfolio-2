@@ -996,16 +996,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const photos = [];
 
     // Передняя обложка
-    photos.push('img/glava1/1.jpg');
+    photos.push('img/glava1/01_cover.jpg');
 
     // Добавляем развороты: левые и правые страницы
-    for (let i = 2; i <= 48; i++) {
+    for (let i = 1; i <= 35; i++) {
         const num = i.toString().padStart(2, '0');
+
+        // Пропускаем первую страницу (она уже добавлена как обложка)
+        if (i === 1) continue;
 
         // Пропускаем страницы 28 (они будут показываться при hover на страницах 27)
         if (i === 28) continue;
 
-        // Левая страница (если существует)
+        // Левая страница
         const leftPath = `img/glava1/${num}_left.jpg`;
         photos.push(leftPath);
 
@@ -1014,8 +1017,8 @@ document.addEventListener('DOMContentLoaded', () => {
         photos.push(rightPath);
     }
 
-    // Задняя обложка (дублируем обложку)
-    photos.push('img/glava1/1.jpg');
+    // Задняя обложка
+    photos.push('img/glava1/35_right.jpg');
 
     console.log('Всего страниц в книге:', photos.length);
 
