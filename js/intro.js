@@ -1,15 +1,19 @@
 /**
  * Intro Animation Controller
- * Управляет последовательностью intro-анимации
+ * Управляет последовательностью intro-анимации с детекцией жестов
  */
 
 class IntroAnimation {
     constructor() {
         this.overlay = document.getElementById('introOverlay');
-        this.clickText = document.getElementById('clickText');
+        this.gestureWindow = document.getElementById('gestureWindow');
+        this.gestureContent = document.getElementById('gestureContent');
+        this.successMessage = document.getElementById('successMessage');
         this.ghostPagesContainer = document.getElementById('ghostPages');
         this.finalPage = document.getElementById('finalPage');
         this.greenOverlay = document.getElementById('greenOverlay');
+
+        this.gestureDetector = null;
 
         this.init();
     }
@@ -32,29 +36,66 @@ class IntroAnimation {
         // Шаг 1: Призрачное движение страниц (бесконечное)
         // Анимация запускается автоматически через CSS и продолжается бесконечно
 
-        // Шаг 2: После 5 секунд дрожания, резко появляется зеленый экран
+        // Шаг 2: После 2.5 секунд дрожания, резко появляется зеленый экран
         setTimeout(() => {
             this.greenOverlay.classList.add('greening');
-        }, 5000);
+        }, 2500);
 
-        // Шаг 3: После появления зеленого экрана показываем текст "CLICK HERE"
+        // Шаг 3: После появления зеленого экрана показываем окно с жестом
         setTimeout(() => {
-            this.clickText.classList.add('visible');
-            this.setupClickHandler();
-        }, 5100); // 5000 + 100ms (резкое появление зеленого)
+            this.showGestureWindow();
+        }, 2600); // 2500 + 100ms (резкое появление зеленого)
     }
 
-    setupClickHandler() {
-        // Обработчик клика на текст
-        this.clickText.addEventListener('click', () => {
-            this.hideIntro();
-        });
+    async showGestureWindow() {
+        // Показываем окно
+        this.gestureWindow.classList.add('visible');
 
-        // Также можно кликнуть в любое место оверлея
-        this.overlay.addEventListener('click', (e) => {
-            if (e.target === this.overlay || e.target === this.clickText) {
-                this.hideIntro();
-            }
+        // Инициализируем детектор жестов
+        this.gestureDetector = new GestureDetector();
+        const initialized = await this.gestureDetector.init();
+
+        if (!initialized) {
+            // Если камера недоступна, показываем запасной вариант
+            setTimeout(() => {
+                this.showFallbackOption();
+            }, 3000);
+            return;
+        }
+
+        // Устанавливаем обработчик для детекции щипка
+        this.gestureDetector.onPinch(() => {
+            this.onGestureDetected();
+        });
+    }
+
+    onGestureDetected() {
+        // Останавливаем детектор
+        if (this.gestureDetector) {
+            this.gestureDetector.stop();
+        }
+
+        // Скрываем контент с камерой
+        this.gestureContent.classList.add('hidden');
+
+        // Показываем благодарственное сообщение
+        this.successMessage.classList.add('visible');
+
+        // Через 2 секунды скрываем всё интро
+        setTimeout(() => {
+            this.hideIntro();
+        }, 2000);
+    }
+
+    showFallbackOption() {
+        // Если камера недоступна, делаем окно кликабельным
+        const statusElement = document.getElementById('gestureStatus');
+        statusElement.textContent = 'Click anywhere to continue';
+        statusElement.classList.add('success');
+
+        this.gestureWindow.style.cursor = 'pointer';
+        this.gestureWindow.addEventListener('click', () => {
+            this.onGestureDetected();
         });
     }
 

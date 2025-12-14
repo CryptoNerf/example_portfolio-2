@@ -17,7 +17,28 @@
         </div>
         <img src="img/beginpaper.jpg" alt="" class="final-page" id="finalPage">
         <div class="green-overlay" id="greenOverlay"></div>
-        <div class="click-text" id="clickText">CLICK HERE</div>
+
+        <!-- Macintosh окно для жеста -->
+        <div class="gesture-window" id="gestureWindow">
+            <div class="gesture-window-header">
+                <h3 class="gesture-window-title">Welcome to Dasha Mamba Portfolio</h3>
+            </div>
+            <div class="gesture-window-content" id="gestureContent">
+                <p class="gesture-instruction">
+                    To enter the website, please make a pinch gesture<br>
+                    (connect your thumb and index finger together)
+                </p>
+                <div class="video-container">
+                    <video id="gestureVideo" autoplay playsinline></video>
+                    <canvas id="gestureCanvas"></canvas>
+                </div>
+                <div class="gesture-status" id="gestureStatus">Waiting for camera...</div>
+            </div>
+            <div class="success-message" id="successMessage">
+                <p>Thank you for your gesture!</p>
+                <p>Welcome to the portfolio...</p>
+            </div>
+        </div>
     </div>
     <!-- Header - статичный на всех страницах -->
     <header>
@@ -82,6 +103,11 @@
         <img src="img/Asset.png" alt="Design Mockup">
     </div>
 
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+    <script src="js/gesture-detector.js"></script>
     <script src="js/intro.js"></script>
     <script src="js/mockup-toggle.js"></script>
 </body>
