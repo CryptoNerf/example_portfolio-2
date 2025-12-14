@@ -56,6 +56,10 @@
 }
 /* Адаптивность */
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
     .about-content {
         gap: 30px;
     }
@@ -77,6 +81,10 @@
 }
 
 @media (max-width: 480px) {
+    body {
+        padding-top: 56px;
+    }
+
     .about-content {
         gap: 25px;
     }

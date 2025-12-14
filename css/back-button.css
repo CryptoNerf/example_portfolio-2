@@ -60,6 +60,7 @@
 /* Адаптивность для мобильных */
 @media (max-width: 768px) {
     .back-button {
+        position: absolute;
         height: 24px;
         padding: 0 8px;
         font-size: 9px;
@@ -71,6 +72,7 @@
 
 @media (max-width: 480px) {
     .back-button {
+        position: absolute;
         height: 24px;
         padding: 0 8px;
         font-size: 9px;

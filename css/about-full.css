@@ -52,6 +52,10 @@ body {
    ========================================== */
 
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
     .fullscreen-image-container {
         padding: 15px;
     }
@@ -63,6 +67,10 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding-top: 56px;
+    }
+
     .fullscreen-image-container {
         padding: 10px;
     }

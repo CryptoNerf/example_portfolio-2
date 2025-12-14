@@ -55,10 +55,10 @@ header {
     /* line-height: 1.5; */
 }
 
-.content-section a {
+/* .content-section a {
     color: #000000;
     text-decoration: none;
-}
+} */
 
 .content-section a:hover {
     text-decoration: underline;

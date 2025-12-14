@@ -70,6 +70,10 @@
 
 /* Планшеты */
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
     .chapter-container {
         flex-direction: column;
         gap: 25px;
@@ -84,6 +88,10 @@
 
 /* Мобильные устройства */
 @media (max-width: 480px) {
+    body {
+        padding-top: 56px;
+    }
+
     .chapter-container {
         gap: 20px;
     }
