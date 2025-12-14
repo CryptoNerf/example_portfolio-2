@@ -10,7 +10,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    background: #f5f5f5;
+    background: #EDE7D4;
     overflow: hidden;
 }
 
@@ -42,48 +42,48 @@ body {
     min-width: 48px;
     height: 28px;
     padding: 0 12px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.03) 1px,
-            rgba(0, 0, 0, 0.03) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.35);
     transition: none;
     z-index: 100;
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
     font-size: 10px;
     font-weight: bold;
-    color: #000000;
+    color: #2A2520;
     text-decoration: none;
 }
 
 .back-button:hover {
-    background: #f5f5f5;
+    background: #D4C9A8;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.05) 1px,
-            rgba(0, 0, 0, 0.05) 2px
+            rgba(74, 66, 55, 0.12) 1px,
+            rgba(74, 66, 55, 0.12) 2px
         );
 }
 
 .back-button:active {
-    background: #000000;
-    color: #ffffff;
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.5);
+    background: #4A4237;
+    color: #E5DCC5;
+    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================
@@ -174,26 +174,26 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #e8e8e8;
+    background: #e4dcc5;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 2px,
-            rgba(0, 0, 0, 0.05) 2px,
-            rgba(0, 0, 0, 0.05) 4px
+            rgba(74, 66, 55, 0.12) 2px,
+            rgba(74, 66, 55, 0.12) 4px
         ),
         repeating-linear-gradient(
             -45deg,
             transparent,
             transparent 2px,
-            rgba(0, 0, 0, 0.03) 2px,
-            rgba(0, 0, 0, 0.03) 4px
+            rgba(74, 66, 55, 0.08) 2px,
+            rgba(74, 66, 55, 0.08) 4px
         );
     padding: 10px 14px;
     border-radius: 12px;
-    border: 2px solid #000000;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+    border: 2px solid #4A4237;
+    box-shadow: 3px 3px 0 rgba(74, 66, 55, 0.35);
     z-index: 50;
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
 }
@@ -205,22 +205,22 @@ body {
 .nav-control-btn {
     width: 32px;
     height: 32px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.04) 1px,
-            rgba(0, 0, 0, 0.04) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.3);
     transition: none;
 }
 
@@ -228,14 +228,14 @@ body {
 .rotate-btn:hover,
 .zoom-btn:hover,
 .nav-control-btn:hover {
-    background: #f5f5f5;
+    background: #D4C9A8;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.06) 1px,
-            rgba(0, 0, 0, 0.06) 2px
+            rgba(74, 66, 55, 0.12) 1px,
+            rgba(74, 66, 55, 0.12) 2px
         );
 }
 
@@ -243,23 +243,23 @@ body {
 .rotate-btn:active,
 .zoom-btn:active,
 .nav-control-btn:active {
-    background: #d0d0d0;
+    background: #C4B89A;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.1) 1px,
-            rgba(0, 0, 0, 0.1) 2px
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
         );
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 0 rgba(74, 66, 55, 0.25);
 }
 
 .grid-btn svg,
 .rotate-btn svg,
 .zoom-btn svg,
 .nav-control-btn svg {
-    color: #000000;
+    color: #2A2520;
     width: 18px;
     height: 18px;
 }
@@ -267,55 +267,55 @@ body {
 /* Активная кнопка поворота и увеличения */
 .rotate-btn.active,
 .zoom-btn.active {
-    background: #000000;
+    background: #4A4237;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 2px,
-            rgba(255, 255, 255, 0.1) 2px,
-            rgba(255, 255, 255, 0.1) 4px
+            rgba(229, 220, 197, 0.15) 2px,
+            rgba(229, 220, 197, 0.15) 4px
         );
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
 .rotate-btn.active svg,
 .zoom-btn.active svg {
-    color: #ffffff;
+    color: #E5DCC5;
 }
 
 .nav-control-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
-    background: #cccccc;
+    background: #C4B89A;
     background-image:
         repeating-linear-gradient(
             90deg,
             transparent,
             transparent 2px,
-            rgba(0, 0, 0, 0.08) 2px,
-            rgba(0, 0, 0, 0.08) 4px
+            rgba(74, 66, 55, 0.12) 2px,
+            rgba(74, 66, 55, 0.12) 4px
         );
 }
 
 .nav-control-btn:disabled svg {
-    color: #666666;
+    color: #5C5142;
 }
 
 .nav-control-btn:disabled:hover {
-    background: #cccccc;
+    background: #C4B89A;
     background-image:
         repeating-linear-gradient(
             90deg,
             transparent,
             transparent 2px,
-            rgba(0, 0, 0, 0.08) 2px,
-            rgba(0, 0, 0, 0.08) 4px
+            rgba(74, 66, 55, 0.12) 2px,
+            rgba(74, 66, 55, 0.12) 4px
         );
 }
 
 .nav-control-btn:disabled:active {
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.3);
 }
 
 /* Слайдер прогресса (Macintosh Style) */
@@ -324,20 +324,20 @@ body {
     height: 18px;
     -webkit-appearance: none;
     appearance: none;
-    background: #f0f0f0;
+    background: #D9CDB0;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.06) 1px,
-            rgba(0, 0, 0, 0.06) 2px
+            rgba(74, 66, 55, 0.12) 1px,
+            rgba(74, 66, 55, 0.12) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 9px;
     outline: none;
     cursor: pointer;
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(74, 66, 55, 0.25);
 }
 
 .progress-slider::-webkit-slider-thumb {
@@ -345,16 +345,16 @@ body {
     appearance: none;
     width: 14px;
     height: 14px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.05) 1px,
-            rgba(0, 0, 0, 0.05) 2px
+            rgba(74, 66, 55, 0.1) 1px,
+            rgba(74, 66, 55, 0.1) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 50%;
     cursor: pointer;
     transition: none;
@@ -362,45 +362,45 @@ body {
 }
 
 .progress-slider::-webkit-slider-thumb:active {
-    background: #e0e0e0;
+    background: #C4B89A;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.1) 1px,
-            rgba(0, 0, 0, 0.1) 2px
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
         );
 }
 
 .progress-slider::-moz-range-thumb {
     width: 14px;
     height: 14px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.05) 1px,
-            rgba(0, 0, 0, 0.05) 2px
+            rgba(74, 66, 55, 0.1) 1px,
+            rgba(74, 66, 55, 0.1) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 50%;
     cursor: pointer;
     transition: none;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 2px rgba(74, 66, 55, 0.35);
 }
 
 .progress-slider::-moz-range-thumb:active {
-    background: #e0e0e0;
+    background: #C4B89A;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.1) 1px,
-            rgba(0, 0, 0, 0.1) 2px
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
         );
 }
 
@@ -408,22 +408,22 @@ body {
 .photo-counter {
     font-size: 10px;
     font-weight: bold;
-    color: #000000;
+    color: #2A2520;
     min-width: 50px;
     text-align: center;
     padding: 4px 10px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.04) 1px,
-            rgba(0, 0, 0, 0.04) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 4px;
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 1px 1px 2px rgba(74, 66, 55, 0.2);
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
 }
 
@@ -464,28 +464,28 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.04) 1px,
-            rgba(0, 0, 0, 0.04) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
     padding: 8px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1001;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #4A4237;
     box-shadow: none;
     height: 40px;
     box-sizing: border-box;
 }
 
 .grid-header h3 {
-    color: #000000;
+    color: #2A2520;
     font-size: 12px;
     font-weight: bold;
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
@@ -496,18 +496,18 @@ body {
 .close-grid {
     width: 20px;
     height: 20px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.05) 1px,
-            rgba(0, 0, 0, 0.05) 2px
+            rgba(74, 66, 55, 0.1) 1px,
+            rgba(74, 66, 55, 0.1) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 3px;
-    color: #000000;
+    color: #2A2520;
     font-size: 14px;
     font-weight: bold;
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
@@ -521,21 +521,21 @@ body {
 }
 
 .close-grid:hover {
-    background: #f5f5f5;
+    background: #D4C9A8;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.07) 1px,
-            rgba(0, 0, 0, 0.07) 2px
+            rgba(74, 66, 55, 0.12) 1px,
+            rgba(74, 66, 55, 0.12) 2px
         );
 }
 
 .close-grid:active {
-    background: #000000;
-    color: #ffffff;
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.5);
+    background: #4A4237;
+    color: #E5DCC5;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Сетка миниатюр (Macintosh Style with Dithering) */
@@ -551,7 +551,7 @@ body {
     gap: 16px;
     padding: 20px;
     overflow-y: auto;
-    background: #d8d8d8;
+    background: #c9bb9c;
     background-image:
         repeating-linear-gradient(
             45deg,
@@ -596,19 +596,19 @@ body {
     position: absolute;
     bottom: 6px;
     right: 6px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.05) 1px,
-            rgba(0, 0, 0, 0.05) 2px
+            rgba(74, 66, 55, 0.1) 1px,
+            rgba(74, 66, 55, 0.1) 2px
         );
-    color: #000000;
+    color: #2A2520;
     padding: 3px 8px;
     border-radius: 3px;
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     font-size: 10px;
     font-weight: bold;
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
@@ -634,7 +634,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #d8d8d8;
+    background: #c9bb9c;
     background-image:
         repeating-linear-gradient(
             45deg,
@@ -668,18 +668,18 @@ body {
     right: 20px;
     width: 32px;
     height: 32px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.04) 1px,
-            rgba(0, 0, 0, 0.04) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 6px;
-    color: #000000;
+    color: #2A2520;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
@@ -688,26 +688,26 @@ body {
     justify-content: center;
     transition: none;
     z-index: 2001;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.35);
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
 }
 
 .close-zoom:hover {
-    background: #f5f5f5;
+    background: #D4C9A8;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.06) 1px,
-            rgba(0, 0, 0, 0.06) 2px
+            rgba(74, 66, 55, 0.12) 1px,
+            rgba(74, 66, 55, 0.12) 2px
         );
 }
 
 .close-zoom:active {
-    background: #000000;
-    color: #ffffff;
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.5);
+    background: #4A4237;
+    color: #E5DCC5;
+    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Контейнер изображения */
@@ -741,99 +741,99 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: #e8e8e8;
+    background: #D9CDB0;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 2px,
-            rgba(0, 0, 0, 0.05) 2px,
-            rgba(0, 0, 0, 0.05) 4px
+            rgba(74, 66, 55, 0.12) 2px,
+            rgba(74, 66, 55, 0.12) 4px
         ),
         repeating-linear-gradient(
             -45deg,
             transparent,
             transparent 2px,
-            rgba(0, 0, 0, 0.03) 2px,
-            rgba(0, 0, 0, 0.03) 4px
+            rgba(74, 66, 55, 0.08) 2px,
+            rgba(74, 66, 55, 0.08) 4px
         );
     padding: 10px 16px;
     border-radius: 12px;
-    border: 2px solid #000000;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+    border: 2px solid #4A4237;
+    box-shadow: 3px 3px 0 rgba(74, 66, 55, 0.35);
     z-index: 2001;
 }
 
 .zoom-control-btn {
     width: 36px;
     height: 36px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.04) 1px,
-            rgba(0, 0, 0, 0.04) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: none;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.3);
 }
 
 .zoom-control-btn:hover {
-    background: #f5f5f5;
+    background: #D4C9A8;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.06) 1px,
-            rgba(0, 0, 0, 0.06) 2px
+            rgba(74, 66, 55, 0.12) 1px,
+            rgba(74, 66, 55, 0.12) 2px
         );
 }
 
 .zoom-control-btn:active {
-    background: #d0d0d0;
+    background: #C4B89A;
     background-image:
         repeating-linear-gradient(
             45deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.1) 1px,
-            rgba(0, 0, 0, 0.1) 2px
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
         );
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 0 rgba(74, 66, 55, 0.25);
 }
 
 .zoom-control-btn svg {
-    color: #000000;
+    color: #2A2520;
 }
 
 .zoom-level {
-    color: #000000;
+    color: #2A2520;
     font-size: 12px;
     font-weight: bold;
     min-width: 50px;
     text-align: center;
     padding: 4px 10px;
-    background: #ffffff;
+    background: #E5DCC5;
     background-image:
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 1px,
-            rgba(0, 0, 0, 0.04) 1px,
-            rgba(0, 0, 0, 0.04) 2px
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
         );
-    border: 2px solid #000000;
+    border: 2px solid #4A4237;
     border-radius: 4px;
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 1px 1px 2px rgba(74, 66, 55, 0.2);
     font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
 }
 
