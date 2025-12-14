@@ -219,22 +219,26 @@
     }
 }
 
-/* Macintosh окно для жеста */
+/* Windows 95 окно для жеста */
 .gesture-window {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    background: #E5DCC5;
-    border: 3px solid #4A4237;
-    border-radius: 8px;
-    box-shadow: 5px 5px 0 rgba(74, 66, 55, 0.4);
+    background: #C0C0C0;
+    border: none;
+    border-top: 3px solid #DFDFDF;
+    border-left: 3px solid #DFDFDF;
+    border-bottom: 3px solid #404040;
+    border-right: 3px solid #404040;
+    box-shadow: inset 1px 1px 0 #FFFFFF, inset -1px -1px 0 #808080, 2px 2px 4px rgba(0,0,0,0.3);
+    border-radius: 0;
     opacity: 0;
     pointer-events: none;
     z-index: 10;
     transition: opacity 0.5s ease;
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
 .gesture-window.visible {
@@ -242,30 +246,23 @@
     pointer-events: auto;
 }
 
-/* Заголовок окна в стиле Macintosh */
+/* Заголовок окна в стиле Windows 95 */
 .gesture-window-header {
-    background: #D9CDB0;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border-bottom: 2px solid #4A4237;
-    padding: 10px 12px;
+    background: linear-gradient(90deg, #000080 0%, #1084D0 100%);
+    border: none;
+    padding: 3px 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0;
 }
 
 .gesture-window-title {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    color: #2A2520;
+    color: #FFFFFF;
     margin: 0;
+    letter-spacing: 0.5px;
 }
 
 /* Содержимое окна */
@@ -274,11 +271,11 @@
 }
 
 .gesture-instruction {
-    font-size: 14px;
-    color: #2A2520;
-    margin-bottom: 20px;
+    font-size: 11px;
+    color: #000000;
+    margin-bottom: 15px;
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 /* Контейнер видео */
@@ -287,8 +284,13 @@
     width: 100%;
     height: 280px;
     background: #000;
-    border: 2px solid #4A4237;
-    border-radius: 4px;
+    border: none;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #DFDFDF;
+    border-radius: 0;
     overflow: hidden;
     margin-bottom: 15px;
 }
@@ -297,7 +299,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: sepia(0.8) contrast(1.1) brightness(0.9);
+    filter: grayscale(1) contrast(1.2) brightness(0.9);
     transform: scaleX(-1); /* Зеркало для удобства */
 }
 
@@ -313,22 +315,27 @@
 /* Статус детекции */
 .gesture-status {
     text-align: center;
-    font-size: 12px;
-    color: #2A2520;
-    padding: 8px;
-    background: #D9CDB0;
-    border: 2px solid #4A4237;
-    border-radius: 4px;
-    font-weight: bold;
+    font-size: 11px;
+    color: #000000;
+    padding: 6px 8px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #404040;
+    border-radius: 0;
+    font-weight: normal;
 }
 
 .gesture-status.detecting {
-    background: #C4B89A;
+    background: #A0A0A0;
 }
 
 .gesture-status.success {
-    background: #A8D4A8;
-    color: #1a4d1a;
+    background: #FFFFFF;
+    color: #000000;
 }
 
 /* Сообщение об успехе */
@@ -336,9 +343,9 @@
     display: none;
     text-align: center;
     padding: 20px;
-    font-size: 16px;
-    color: #2A2520;
-    line-height: 1.8;
+    font-size: 11px;
+    color: #000000;
+    line-height: 1.6;
 }
 
 .success-message.visible {

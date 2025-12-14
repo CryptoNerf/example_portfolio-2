@@ -9,8 +9,8 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    background: #EDE7D4;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    background: #008080;
     overflow: hidden;
 }
 
@@ -26,13 +26,35 @@ body {
     align-items: center;
     justify-content: center;
     background: #F7F4E5;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.18) 1px,
+            rgba(74, 66, 55, 0.18) 2px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
+        );
     position: relative;
     padding: 80px 30px 140px; /* Увеличен нижний отступ для панели */
     overflow: hidden;
 }
 
 /* ==========================================
-   Кнопка назад (Macintosh Style)
+   Кнопка назад (Windows 95 Style)
    ========================================== */
 
 .back-button {
@@ -42,48 +64,40 @@ body {
     min-width: 48px;
     height: 28px;
     padding: 0 12px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 8px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #404040;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.35);
     transition: none;
     z-index: 100;
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
-    font-size: 10px;
-    font-weight: bold;
-    color: #2A2520;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000000;
     text-decoration: none;
 }
 
 .back-button:hover {
-    background: #D4C9A8;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
+    background: #D0D0D0;
 }
 
 .back-button:active {
-    background: #4A4237;
-    color: #E5DCC5;
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
+    background: #C0C0C0;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 2px #000000;
+    color: #000000;
 }
 
 /* ==========================================
@@ -173,54 +187,39 @@ body {
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: #e4dcc5;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 2px,
-            rgba(74, 66, 55, 0.12) 2px,
-            rgba(74, 66, 55, 0.12) 4px
-        ),
-        repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 2px,
-            rgba(74, 66, 55, 0.08) 2px,
-            rgba(74, 66, 55, 0.08) 4px
-        );
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 2px solid #4A4237;
-    box-shadow: 3px 3px 0 rgba(74, 66, 55, 0.35);
+    gap: 6px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #DFDFDF;
+    border-left: 2px solid #DFDFDF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #FFFFFF, inset -1px -1px 0 #404040, 2px 2px 3px rgba(0,0,0,0.3);
+    padding: 8px 12px;
+    border-radius: 0;
     z-index: 50;
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
-/* Кнопки (Macintosh Style with Dithering) */
+/* Кнопки (Windows 95 Style) */
 .grid-btn,
 .rotate-btn,
 .zoom-btn,
 .nav-control-btn {
     width: 32px;
     height: 32px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 6px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #404040;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.3);
     transition: none;
 }
 
@@ -228,38 +227,26 @@ body {
 .rotate-btn:hover,
 .zoom-btn:hover,
 .nav-control-btn:hover {
-    background: #D4C9A8;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
+    background: #D0D0D0;
 }
 
 .grid-btn:active,
 .rotate-btn:active,
 .zoom-btn:active,
 .nav-control-btn:active {
-    background: #C4B89A;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.15) 1px,
-            rgba(74, 66, 55, 0.15) 2px
-        );
-    box-shadow: inset 2px 2px 0 rgba(74, 66, 55, 0.25);
+    background: #C0C0C0;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 2px #000000;
 }
 
 .grid-btn svg,
 .rotate-btn svg,
 .zoom-btn svg,
 .nav-control-btn svg {
-    color: #2A2520;
+    color: #000000;
     width: 18px;
     height: 18px;
 }
@@ -267,77 +254,57 @@ body {
 /* Активная кнопка поворота и увеличения */
 .rotate-btn.active,
 .zoom-btn.active {
-    background: #4A4237;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 2px,
-            rgba(229, 220, 197, 0.15) 2px,
-            rgba(229, 220, 197, 0.15) 4px
-        );
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
+    background: #808080;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #DFDFDF;
+    border-right: 2px solid #DFDFDF;
+    box-shadow: inset 1px 1px 2px #000000;
 }
 
 .rotate-btn.active svg,
 .zoom-btn.active svg {
-    color: #E5DCC5;
+    color: #FFFFFF;
 }
 
 .nav-control-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.5;
     cursor: not-allowed;
-    background: #C4B89A;
-    background-image:
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(74, 66, 55, 0.12) 2px,
-            rgba(74, 66, 55, 0.12) 4px
-        );
+    background: #C0C0C0;
 }
 
 .nav-control-btn:disabled svg {
-    color: #5C5142;
+    color: #808080;
 }
 
 .nav-control-btn:disabled:hover {
-    background: #C4B89A;
-    background-image:
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(74, 66, 55, 0.12) 2px,
-            rgba(74, 66, 55, 0.12) 4px
-        );
+    background: #C0C0C0;
 }
 
 .nav-control-btn:disabled:active {
-    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.3);
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #404040;
 }
 
-/* Слайдер прогресса (Macintosh Style) */
+/* Слайдер прогресса (Windows 95 Style) */
 .progress-slider {
     width: 200px;
     height: 18px;
     -webkit-appearance: none;
     appearance: none;
-    background: #D9CDB0;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 9px;
+    background: #FFFFFF;
+    border: none;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 0 #404040;
+    border-radius: 0;
     outline: none;
     cursor: pointer;
-    box-shadow: inset 1px 1px 2px rgba(74, 66, 55, 0.25);
 }
 
 .progress-slider::-webkit-slider-thumb {
@@ -345,86 +312,68 @@ body {
     appearance: none;
     width: 14px;
     height: 14px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.1) 1px,
-            rgba(74, 66, 55, 0.1) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 50%;
+    background: #C0C0C0;
+    border: none;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
+    box-shadow: inset 0.5px 0.5px 0 #DFDFDF, inset -0.5px -0.5px 0 #404040;
+    border-radius: 0;
     cursor: pointer;
     transition: none;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .progress-slider::-webkit-slider-thumb:active {
-    background: #C4B89A;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.15) 1px,
-            rgba(74, 66, 55, 0.15) 2px
-        );
+    background: #808080;
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-bottom: 1px solid #DFDFDF;
+    border-right: 1px solid #DFDFDF;
+    box-shadow: inset 1px 1px 1px #000000;
 }
 
 .progress-slider::-moz-range-thumb {
     width: 14px;
     height: 14px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.1) 1px,
-            rgba(74, 66, 55, 0.1) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 50%;
+    background: #C0C0C0;
+    border: none;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
+    box-shadow: inset 0.5px 0.5px 0 #DFDFDF, inset -0.5px -0.5px 0 #404040;
+    border-radius: 0;
     cursor: pointer;
     transition: none;
-    box-shadow: 1px 1px 2px rgba(74, 66, 55, 0.35);
 }
 
 .progress-slider::-moz-range-thumb:active {
-    background: #C4B89A;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.15) 1px,
-            rgba(74, 66, 55, 0.15) 2px
-        );
+    background: #808080;
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-bottom: 1px solid #DFDFDF;
+    border-right: 1px solid #DFDFDF;
+    box-shadow: inset 1px 1px 1px #000000;
 }
 
-/* Счетчик фото (Macintosh Style) */
+/* Счетчик фото (Windows 95 Style) */
 .photo-counter {
-    font-size: 10px;
-    font-weight: bold;
-    color: #2A2520;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000000;
     min-width: 50px;
     text-align: center;
     padding: 4px 10px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 4px;
-    box-shadow: inset 1px 1px 2px rgba(74, 66, 55, 0.2);
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    background: #FFFFFF;
+    border: none;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    box-shadow: inset 1px 1px 0 #404040;
+    border-radius: 0;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
 /* ==========================================
@@ -437,7 +386,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
+    background: #C0C0C0;
     display: none;
     z-index: 1000;
     overflow: hidden;
@@ -458,59 +407,49 @@ body {
     }
 }
 
-/* Заголовок сетки (Macintosh Title Bar) */
+/* Заголовок сетки (Windows 95 Title Bar) */
 .grid-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    padding: 8px 12px;
+    background: linear-gradient(90deg, #000080 0%, #1084D0 100%);
+    padding: 3px 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1001;
-    border-bottom: 2px solid #4A4237;
+    border: none;
     box-shadow: none;
-    height: 40px;
+    height: 24px;
     box-sizing: border-box;
 }
 
 .grid-header h3 {
-    color: #2A2520;
-    font-size: 12px;
+    color: #FFFFFF;
+    font-size: 11px;
     font-weight: bold;
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0 4px;
+    letter-spacing: 0.5px;
 }
 
 .close-grid {
-    width: 20px;
-    height: 20px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.1) 1px,
-            rgba(74, 66, 55, 0.1) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 3px;
-    color: #2A2520;
-    font-size: 14px;
+    width: 16px;
+    height: 14px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    box-shadow: inset 0.5px 0.5px 0 #DFDFDF, inset -0.5px -0.5px 0 #808080;
+    border-radius: 0;
+    color: #000000;
+    font-size: 10px;
     font-weight: bold;
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -521,27 +460,22 @@ body {
 }
 
 .close-grid:hover {
-    background: #D4C9A8;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
+    background: #D0D0D0;
 }
 
 .close-grid:active {
-    background: #4A4237;
-    color: #E5DCC5;
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3);
+    background: #C0C0C0;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    box-shadow: inset 1px 1px 1px #000000;
 }
 
-/* Сетка миниатюр (Macintosh Style with Dithering) */
+/* Сетка миниатюр (Windows 95 Style) */
 .grid-container {
     position: fixed;
-    top: 40px;
+    top: 24px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -551,22 +485,7 @@ body {
     gap: 16px;
     padding: 20px;
     overflow-y: auto;
-    background: #c9bb9c;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 3px,
-            rgba(0, 0, 0, 0.04) 3px,
-            rgba(0, 0, 0, 0.04) 6px
-        ),
-        repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 3px,
-            rgba(0, 0, 0, 0.03) 3px,
-            rgba(0, 0, 0, 0.03) 6px
-        );
+    background: #008080;
     align-content: start;
 }
 
@@ -990,7 +909,7 @@ body {
     }
 
     .grid-container {
-        top: 36px;
+        top: 24px;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 12px;
         padding: 16px;

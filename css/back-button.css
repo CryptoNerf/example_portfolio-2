@@ -9,48 +9,40 @@
     min-width: 48px;
     height: 28px;
     padding: 0 12px;
-    background: #e4dcc5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 8px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #404040;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.35);
     transition: none;
     z-index: 100;
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
-    font-size: 10px;
-    font-weight: bold;
-    color: #2A2520;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000000;
     text-decoration: none;
 }
 
 .back-button:hover {
-    background: #e4dcc5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
+    background: #D0D0D0;
 }
 
 .back-button:active {
-    background: #4A4237;
-    color: #e4dcc5;
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
+    background: #C0C0C0;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 2px #000000;
+    color: #000000;
 }
 
 .back-button svg {
