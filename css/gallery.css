@@ -413,7 +413,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(90deg, #000080 0%, #1084D0 100%);
+    background: linear-gradient(90deg, #b3987c 0%, #DAB892 100%);
     padding: 3px 4px;
     display: flex;
     justify-content: space-between;
@@ -423,11 +423,12 @@ body {
     box-shadow: none;
     height: 24px;
     box-sizing: border-box;
+    border: #000000 1px solid;
 }
 
 .grid-header h3 {
     color: #FFFFFF;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     font-family: 'MS Sans Serif', Arial, sans-serif;
     margin: 0;
@@ -485,7 +486,7 @@ body {
     gap: 16px;
     padding: 20px;
     overflow-y: auto;
-    background: #008080;
+    background: #AFAD9E;
     align-content: start;
 }
 
@@ -821,7 +822,7 @@ body {
         font-size: 9px;
         top: 12px;
         left: 12px;
-        border-radius: 6px;
+        /* border-radius: 6px; */
     }
 
     .book-wrapper {

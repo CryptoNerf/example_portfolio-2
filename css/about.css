@@ -38,6 +38,7 @@
     width: 400px;
     height: auto;
     display: block;
+    position: relative;
 }
 
 .about-image:not(:last-child) {
@@ -45,14 +46,26 @@
 }
 
 .about-image-wide {
-    width: 800px;
+    width: 800px !important;
+    max-width: 800px;
 }
 
 .philosophy-full {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
+    position: relative;
+}
+
+/* Центрируем wrapper от magnifier для изображений в philosophy */
+.philosophy-full .magnifier-wrapper {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.philosophy-full .magnifier-wrapper:not(:last-child) {
+    margin-bottom: 24px;
 }
 /* Адаптивность */
 @media (max-width: 768px) {

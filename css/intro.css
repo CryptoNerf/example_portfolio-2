@@ -207,7 +207,7 @@
 }
 
 .green-overlay.greening {
-    animation: turnGreen 0.1s steps(1, jump-end) forwards;
+    animation: turnGreen 2s ease-in-out forwards;
 }
 
 @keyframes turnGreen {
@@ -226,7 +226,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    background: #C0C0C0;
+    background: #AFAD9E;
     border: none;
     border-top: 3px solid #DFDFDF;
     border-left: 3px solid #DFDFDF;
@@ -248,13 +248,14 @@
 
 /* Заголовок окна в стиле Windows 95 */
 .gesture-window-header {
-    background: linear-gradient(90deg, #000080 0%, #1084D0 100%);
+    background: linear-gradient(90deg, #b3987c 0%, #DAB892 100%);
     border: none;
     padding: 3px 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 0;
+    border: #000000 1px solid;
 }
 
 .gesture-window-title {
@@ -299,7 +300,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1) contrast(1.2) brightness(0.9);
+    filter: sepia(1) contrast(1.2) brightness(0.9);
     transform: scaleX(-1); /* Зеркало для удобства */
 }
 
