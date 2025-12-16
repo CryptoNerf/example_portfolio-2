@@ -16,6 +16,10 @@ class GestureDetector {
 
         this.hands = null;
         this.camera = null;
+
+        // Счетчик стабильных кадров для подтверждения жеста
+        this.stablePinchFrames = 0;
+        this.REQUIRED_STABLE_FRAMES = 15; // Требуется ~0.5 секунды стабильного пинча
     }
 
     async init() {
@@ -30,8 +34,8 @@ class GestureDetector {
             this.hands.setOptions({
                 maxNumHands: 1,
                 modelComplexity: 1,
-                minDetectionConfidence: 0.5,
-                minTrackingConfidence: 0.5
+                minDetectionConfidence: 0.7,
+                minTrackingConfidence: 0.7
             });
 
             this.hands.onResults((results) => this.onResults(results));
@@ -111,23 +115,36 @@ class GestureDetector {
             // Проверяем жест щипка
             const isPinching = this.detectPinch(landmarks);
 
-            if (isPinching && !this.pinchDetected) {
-                this.pinchDetected = true;
-                this.updateStatus('Pinch detected!', 'success');
+            if (isPinching) {
+                this.stablePinchFrames++;
 
-                // Вызываем callback через небольшую задержку
-                setTimeout(() => {
-                    if (this.onPinchCallback) {
-                        this.onPinchCallback();
-                    }
-                }, 300);
-            } else if (isPinching) {
-                this.updateStatus('Hold the pinch...', 'detecting');
+                // Показываем прогресс удержания
+                const progress = Math.min(100, (this.stablePinchFrames / this.REQUIRED_STABLE_FRAMES) * 100);
+
+                if (this.stablePinchFrames < this.REQUIRED_STABLE_FRAMES) {
+                    this.updateStatus(`Hold the pinch... ${Math.floor(progress)}%`, 'detecting');
+                } else if (!this.pinchDetected) {
+                    // Жест подтвержден - требуемое количество стабильных кадров достигнуто
+                    this.pinchDetected = true;
+                    this.updateStatus('Pinch confirmed!', 'success');
+
+                    // Вызываем callback
+                    setTimeout(() => {
+                        if (this.onPinchCallback) {
+                            this.onPinchCallback();
+                        }
+                    }, 300);
+                }
             } else {
+                // Сбрасываем счетчик если жест прерван
+                this.stablePinchFrames = 0;
                 this.pinchDetected = false;
                 this.updateStatus('Make a pinch gesture');
             }
         } else {
+            // Сбрасываем счетчик если рука не видна
+            this.stablePinchFrames = 0;
+            this.pinchDetected = false;
             this.updateStatus('Show your hand to the camera');
         }
 
@@ -140,16 +157,54 @@ class GestureDetector {
         // Получаем координаты указательного пальца (кончик - точка 8)
         const indexFinger = landmarks[8];
 
-        // Вычисляем расстояние между кончиками пальцев
-        const distance = Math.sqrt(
+        // Получаем координаты других пальцев для проверки что рука НЕ в кулаке
+        const middleFinger = landmarks[12]; // Средний палец
+        const ringFinger = landmarks[16];   // Безымянный палец
+        const pinky = landmarks[20];        // Мизинец
+
+        // Координаты основания ладони
+        const wrist = landmarks[0];
+        const palmBase = landmarks[9]; // Основание среднего пальца
+
+        // 1. Проверка расстояния между большим и указательным пальцами
+        const thumbIndexDistance = Math.sqrt(
             Math.pow(thumb.x - indexFinger.x, 2) +
             Math.pow(thumb.y - indexFinger.y, 2) +
             Math.pow(thumb.z - indexFinger.z, 2)
         );
 
-        // Если расстояние меньше порога, это щипок
-        const PINCH_THRESHOLD = 0.05; // Экспериментальное значение
-        return distance < PINCH_THRESHOLD;
+        const PINCH_THRESHOLD = 0.04; // Строгий порог для пинча
+        const isPinching = thumbIndexDistance < PINCH_THRESHOLD;
+
+        if (!isPinching) return false;
+
+        // 2. Проверяем что остальные пальцы НЕ сжаты в кулак
+        // Вычисляем расстояние от кончиков других пальцев до основания ладони
+        const middleDistance = Math.sqrt(
+            Math.pow(middleFinger.x - palmBase.x, 2) +
+            Math.pow(middleFinger.y - palmBase.y, 2)
+        );
+
+        const ringDistance = Math.sqrt(
+            Math.pow(ringFinger.x - palmBase.x, 2) +
+            Math.pow(ringFinger.y - palmBase.y, 2)
+        );
+
+        const pinkyDistance = Math.sqrt(
+            Math.pow(pinky.x - palmBase.x, 2) +
+            Math.pow(pinky.y - palmBase.y, 2)
+        );
+
+        // Если хотя бы 2 из 3 пальцев достаточно вытянуты, значит это не кулак
+        const EXTENDED_FINGER_THRESHOLD = 0.15; // Минимальное расстояние для "вытянутого" пальца
+        const extendedFingers = [
+            middleDistance > EXTENDED_FINGER_THRESHOLD,
+            ringDistance > EXTENDED_FINGER_THRESHOLD,
+            pinkyDistance > EXTENDED_FINGER_THRESHOLD
+        ].filter(Boolean).length;
+
+        // Требуем чтобы минимум 2 пальца были вытянуты (не кулак)
+        return extendedFingers >= 2;
     }
 
     updateStatus(message, type = '') {

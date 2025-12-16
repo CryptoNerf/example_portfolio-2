@@ -318,25 +318,51 @@
     text-align: center;
     font-size: 11px;
     color: #000000;
-    padding: 6px 8px;
-    background: #C0C0C0;
-    border: none;
-    border-top: 2px solid #FFFFFF;
-    border-left: 2px solid #FFFFFF;
-    border-bottom: 2px solid #808080;
-    border-right: 2px solid #808080;
-    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #404040;
+    padding: 8px 12px;
+    background: #F7F4E5;
+    border: 1px solid #4A4237;
     border-radius: 0;
     font-weight: normal;
+    /* font-family: Courier, monospace; */
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.gesture-status::before {
+    content: '●';
+    margin-right: 8px;
+    font-size: 8px;
+    color: #808080;
+    vertical-align: middle;
 }
 
 .gesture-status.detecting {
-    background: #A0A0A0;
+    background: #E5DCC5;
+    border-color: #4A4237;
+}
+
+.gesture-status.detecting::before {
+    color: #D9A547;
+    animation: pulse 1s infinite;
 }
 
 .gesture-status.success {
-    background: #FFFFFF;
+    background: #D9E5D6;
     color: #000000;
+    border-color: #4A4237;
+}
+
+.gesture-status.success::before {
+    color: #4A7C59;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
 }
 
 /* Сообщение об успехе */
@@ -414,7 +440,7 @@
 
     .gesture-status {
         font-size: 11px;
-        padding: 6px;
+        padding: 8px 10px;
     }
 
     .success-message {
