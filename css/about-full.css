@@ -10,6 +10,29 @@
 
 body {
     background: #F7F4E5;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.18) 1px,
+            rgba(74, 66, 55, 0.18) 2px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
+        );
+    background-size: 3px 3px;
     min-height: 100vh;
     display: flex;
     align-items: center;

@@ -11,13 +11,36 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
     background: #F7F4E5;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.18) 1px,
+            rgba(74, 66, 55, 0.18) 2px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.15) 1px,
+            rgba(74, 66, 55, 0.15) 2px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(74, 66, 55, 0.08) 1px,
+            rgba(74, 66, 55, 0.08) 2px
+        );
+    /* background-size: 3px 3px; */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     /* padding: 30px 20px; */
-    gap: 47px;
+    /* gap: 47px; */
 }
 
 /* ==========================================
@@ -56,15 +79,27 @@ header {
 }
 
 /* ==========================================
+   Content Wrapper - фон той же ширины что header/footer
+   ========================================== */
+.content-wrapper {
+    max-width: 800px;
+    width: 100%;
+    background: #F7F4E5;
+    display: flex;
+    justify-content: center;
+    /* padding: 30px 0; */
+}
+
+/* ==========================================
    Секция контента
    ========================================== */
 .content-section {
-    max-width: 540px;
-    width: 100%;
+    width: fit-content;
     font-family: Courier, monospace;
     color: #000000;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
+    /* padding-left: 20px; */
     /* line-height: 1.5; */
 }
 
@@ -107,18 +142,50 @@ header {
 }
 
 .description-text {
-    font-size: 13px;
+    font-size: 14px;
     /* line-height: 1.4; */
-    margin-top: 15px;
+    margin-top: 17px;
+    /* margin-left: 105px; */
     /* text-align: justify; */
 }
 
+.description {
+    /* max-width: 630px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; */
+    margin-left: 58px;
+    letter-spacing: -0.2px;
+}
+
 .links {
-    margin-top: 41px;
+    margin-top: 36px;
+    margin-left: 190px;
 }
 
 .links p {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.links a {
+    background: #000000;
+    color: #00FF00;
+    padding: 2px 6px;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.links a:hover {
+    color: #33FF33;
+}
+
+.dot {
+    background: #000000;
+    color: #00FF00;
+    display: block;
+    margin-bottom: 4px;
+    width: fit-content;
 }
 
 .lastword {
@@ -143,10 +210,10 @@ header {
 
 /* Планшеты */
 @media (max-width: 768px) {
-    body {
+    /* body {
         padding: 40px 20px;
         gap: 35px;
-    }
+    } */
 
     header {
         gap: 15px;
@@ -205,10 +272,10 @@ header {
 
 /* Мобильные устройства */
 @media (max-width: 480px) {
-    body {
+    /* body {
         padding: 30px 15px;
         gap: 30px;
-    }
+    } */
 
     header {
         gap: 20px;
@@ -316,7 +383,7 @@ footer {
     max-width: 630px;
     width: 100%;
     text-align: center;
-    padding-top: 40px;
+    /* padding-top: 40px; */
 }
 
 /* ==========================================

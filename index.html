@@ -1,98 +1,137 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dasha Mamba - Portfolio</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/intro.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/intro.css" />
+  </head>
+  <body>
     <!-- Intro Animation Overlay -->
     <div class="intro-overlay" id="introOverlay">
-        <div class="ghost-pages" id="ghostPages">
-            <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-1">
-            <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-2">
-            <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-3">
-        </div>
-        <img src="img/beginpaper.jpg" alt="" class="final-page" id="finalPage">
-        <div class="green-overlay" id="greenOverlay"></div>
+      <div class="ghost-pages" id="ghostPages">
+        <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-1" />
+        <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-2" />
+        <img src="img/ghostypaper.png" alt="" class="ghost-page ghost-page-3" />
+      </div>
+      <img src="img/beginpaper.jpg" alt="" class="final-page" id="finalPage" />
+      <div class="green-overlay" id="greenOverlay"></div>
 
-        <!-- Macintosh окно для жеста -->
-        <div class="gesture-window" id="gestureWindow">
-            <div class="gesture-window-header">
-                <h3 class="gesture-window-title">Welcome to Dasha Mamba Portfolio</h3>
-            </div>
-            <div class="gesture-window-content" id="gestureContent">
-                <p class="gesture-instruction">
-                    To enter the website, please make a pinch gesture<br>
-                    (connect your thumb and index finger together)
-                </p>
-                <div class="video-container">
-                    <video id="gestureVideo" autoplay playsinline></video>
-                    <canvas id="gestureCanvas"></canvas>
-                </div>
-                <div class="gesture-status" id="gestureStatus">Waiting for camera...</div>
-            </div>
-            <div class="success-message" id="successMessage">
-                <p>Thank you for your gesture!</p>
-                <p>Welcome to the portfolio...</p>
-            </div>
+      <!-- Macintosh окно для жеста -->
+      <div class="gesture-window" id="gestureWindow">
+        <div class="gesture-window-header">
+          <h3 class="gesture-window-title">Welcome to Dasha Mamba Portfolio</h3>
         </div>
+        <div class="gesture-window-content" id="gestureContent">
+          <p class="gesture-instruction">
+            To enter the website, please make a pinch gesture<br />
+            (connect your thumb and index finger together)
+          </p>
+          <div class="video-container">
+            <video id="gestureVideo" autoplay playsinline></video>
+            <canvas id="gestureCanvas"></canvas>
+          </div>
+          <div class="gesture-status" id="gestureStatus">
+            Waiting for camera...
+          </div>
+        </div>
+        <div class="success-message" id="successMessage">
+          <p>Thank you for your gesture!</p>
+          <p>Welcome to the portfolio...</p>
+        </div>
+      </div>
     </div>
     <!-- Header - статичный на всех страницах -->
     <header class="header-image">
-        <img src="img/header.jpg" alt="Dasha Mamba Portfolio Header">
+      <img src="img/header.jpg" alt="Dasha Mamba Portfolio Header" />
     </header>
 
-    <!-- Контент страницы -->
-    <div class="content-section">
+    <!-- Content wrapper с фоном на всю ширину -->
+    <div class="content-wrapper">
+      <!-- Контент страницы -->
+      <div class="content-section">
         <div class="description">
-            <p>Hello stranger.<br>What about this site is:</p>
-            <p class="description-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+          <p style="margin-bottom: 42px; margin-top: 2px">Hello stranger.</p>
+          <p class="description-text">
+            If you found your way here by accident, wandering through the
+            internet,<br />that’s okay — it’s part of the idea. By being here,
+            you’re already<br />involved.
+          </p>
+
+          <p class="description-text">
+            You’re now looking at the archive of my work. I’m Dasha Mamba, and
+            this<br />text is mine.
+          </p>
+          <p class="description-text">
+            My practice explores how we perceive space and how space, in
+            turn,<br />affects us. I work with sound, light, color, scent,
+            touch, and taste —<br />using multiple senses to understand how
+            inner experience is formed and how<br />it changes in different
+            environments. By creating immersive spaces, I try<br />to sharpen
+            perception and invite people to look more closely at their own<br />sensations
+            and emotions.
+          </p>
         </div>
         <div class="links">
-            <p>Information about me:<br><a href="about.html">https://www.dasha-mamba.com/about_me.html</a></p>
-            <p>Philosophy of my work:<br><a href="philosophy.html">https://www.dasha-mamba.com/philosophy.html</a></p>
-            <p>Chapters:<br><a href="chapter.html">https://www.dasha-mamba.com/chapters.html</a></p>
-            <p>My rider:<br><a href="#">https://www.dasha-mamba.com/my_rider.html</a></p>
+          <p>
+            Information about me:<br /><a href="about.html"
+              >https://www.dasha-mamba.com/about_me.html</a
+            >
+          </p>
+          <p>
+            Philosophy of my work:<br /><a href="philosophy.html"
+              >https://www.dasha-mamba.com/philosophy.html</a
+            >
+          </p>
+          <p>
+            Chapters:<br /><a href="chapter.html"
+              >https://www.dasha-mamba.com/chapters.html</a
+            >
+          </p>
+          <p>
+            My rider:<br /><a href="#"
+              >https://www.dasha-mamba.com/my_rider.html</a
+            >
+          </p>
+          <span class="dot">.&nbsp;</span><br />
+          <span class="dot">.&nbsp;</span><br />
+          <span class="dot">.&nbsp;</span><br />
+          <span class="dot">.&nbsp;</span><br />
+          <span class="dot">.&nbsp;</span><br />
+          <span class="dot">.&nbsp;</span><br />
         </div>
 
-        <div class="lastword">
-            <p>It's not important who I am, important what you feel next to me</p>
-            <img class='logo' src="img/logo.png" alt="">
+        <div class="description">
+          <p class="description-text">
+            This archive includes a series of book-objects that reflect this
+            practice.<br />They were handmade by me together with artist Pelageya
+            Kabanova. Each book<br />exists as its own independent object — a small
+            center where the main ideas<br />of my work come together.
+          </p>
+          <span class="dot2">.&nbsp;</span><br />
+          <span class="dot2">.&nbsp;</span><br />
+          <span class="dot2">.&nbsp;</span><br />
+          <span class="dot2">.&nbsp;</span><br />
+          <span class="dot2">.&nbsp;</span><br />
+          <span class="dot2">.&nbsp;</span><br />
         </div>
+
+        <div class="description">
+          <p>It's not important who I am, important what you feel next to me</p>
+          <img class="logo" src="img/logo.png" alt="" />
+        </div>
+      </div>
     </div>
-
-
-    <!-- Секция с главами -->
-    <!--
-    <div class="chapters-section">
-        <a href="glava1.html" class="chapter-link">
-            <h3>Glava 1</h3>
-            <img src="img/book1.gif" alt="Glava 1">
-        </a>
-
-        <a href="glava2.html" class="chapter-link">
-            <h3>Glava 2</h3>
-            <img src="img/book2.gif" alt="Glava 2">
-        </a>
-
-        <a href="glava3.html" class="chapter-link">
-            <h3>Glava 3</h3>
-            <img src="img/book3.gif" alt="Glava 3">
-        </a>
-    </div>
-    -->
 
     <!-- Footer -->
     <footer class="footer-image">
-        <img src="img/footer.jpg" alt="Dasha Mamba Portfolio Footer">
+      <img src="img/footer.jpg" alt="Dasha Mamba Portfolio Footer" />
     </footer>
 
     <!-- Design Mockup Overlay (для верстки) -->
     <div class="mockup-overlay" id="mockupOverlay">
-        <img src="img/traf.jpg" alt="Design Mockup">
+      <img src="img/traf.jpg" alt="Design Mockup" />
     </div>
 
     <!-- MediaPipe Hands -->
@@ -102,5 +141,5 @@
     <script src="js/gesture-detector.js"></script>
     <script src="js/intro.js"></script>
     <script src="js/mockup-toggle.js"></script>
-</body>
+  </body>
 </html>
