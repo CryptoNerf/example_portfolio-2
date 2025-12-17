@@ -59,8 +59,6 @@ header {
     max-width: 800px;
     width: 100%;
     display: block;
-    position: relative;
-    /* filter: invert(1) */
 }
 
 .header-image img {
@@ -70,41 +68,27 @@ header {
 }
 
 .header-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
+    animation: headerInvert 12s ease-in-out infinite;
 }
 
-.header-img-1 {
-    position: relative;
-    z-index: 1;
-}
-
-.header-img-2 {
-    z-index: 2;
-    animation: headerFade 12s ease-in-out infinite;
-}
-
-@keyframes headerFade {
+@keyframes headerInvert {
     0% {
-        opacity: 0;
+        filter: invert(0);
     }
     40% {
-        opacity: 0;
+        filter: invert(0);
     }
     50% {
-        opacity: 1;
+        filter: invert(1);
     }
     85% {
-        opacity: 1;
+        filter: invert(1);
     }
     95% {
-        opacity: 0;
+        filter: invert(0);
     }
     100% {
-        opacity: 0;
+        filter: invert(0);
     }
 }
 
