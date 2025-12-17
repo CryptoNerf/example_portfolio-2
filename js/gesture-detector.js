@@ -19,7 +19,7 @@ class GestureDetector {
 
         // Счетчик стабильных кадров для подтверждения жеста
         this.stablePinchFrames = 0;
-        this.REQUIRED_STABLE_FRAMES = 15; // Требуется ~0.5 секунды стабильного пинча
+        this.REQUIRED_STABLE_FRAMES = 90; // Требуется ~3 секунды стабильного пинча
     }
 
     async init() {
@@ -126,14 +126,14 @@ class GestureDetector {
                 } else if (!this.pinchDetected) {
                     // Жест подтвержден - требуемое количество стабильных кадров достигнуто
                     this.pinchDetected = true;
-                    this.updateStatus('Pinch confirmed!', 'success');
+                    this.updateStatus('Success', 'success');
 
                     // Вызываем callback
                     setTimeout(() => {
                         if (this.onPinchCallback) {
                             this.onPinchCallback();
                         }
-                    }, 300);
+                    }, 1000);
                 }
             } else {
                 // Сбрасываем счетчик если жест прерван

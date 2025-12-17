@@ -282,7 +282,7 @@
 }
 
 .gesture-window-title {
-    font-size: 11px;
+    font-size: 14px;
     font-weight: bold;
     color: #FFFFFF;
     margin: 0;
@@ -294,12 +294,69 @@
     padding: 20px;
 }
 
-.gesture-instruction {
-    font-size: 11px;
-    color: #000000;
+/* Контейнер для инструкции и GIF в две колонки */
+.instruction-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 15px;
-    text-align: center;
+}
+
+.gesture-instruction {
+    flex: 1;
+    font-size: 16px;
+    color: #000000;
+    margin: 0;
+    text-align: left;
     line-height: 1.4;
+}
+
+/* Приветственный текст */
+.welcome-text {
+    font-size: 16px;
+    /* font-family: 'Courier New', Courier, monospace; */
+    color: #000000;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    padding: 20px 10px;
+}
+
+/* Кнопка готовности */
+.ready-button {
+    display: block;
+    margin: 0 auto;
+    padding: 6px 20px;
+    font-size: 14px;
+    /* font-family: 'Courier New', Courier, monospace; */
+    background: #C0C0C0;
+    color: #000000;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #000000;
+    cursor: pointer;
+    outline: none;
+}
+
+.ready-button:active {
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 0 #000000, inset -1px -1px 0 #DFDFDF;
+}
+
+/* GIF демонстрация жеста */
+.gesture-demo {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin: 0;
+    flex-shrink: 0;
+    /* border: 1px solid #4A4237; */
 }
 
 /* Контейнер видео */
@@ -370,13 +427,13 @@
 }
 
 .gesture-status.success {
-    background: #D9E5D6;
-    color: #000000;
-    border-color: #4A4237;
+    background: #0aee4e;
+    color: #FFFFFF;
+    border-color: #2D5039;
 }
 
 .gesture-status.success::before {
-    color: #4A7C59;
+    color: #FFFFFF;
 }
 
 @keyframes pulse {
@@ -393,7 +450,7 @@
     display: none;
     text-align: center;
     padding: 20px;
-    font-size: 11px;
+    font-size: 14px;
     color: #000000;
     line-height: 1.6;
 }
@@ -427,7 +484,7 @@
     }
 
     .gesture-instruction {
-        font-size: 13px;
+        font-size: 16px;
     }
 }
 
@@ -449,7 +506,7 @@
     }
 
     .gesture-instruction {
-        font-size: 12px;
+        font-size: 16px;
         margin-bottom: 15px;
     }
 
@@ -458,11 +515,11 @@
     }
 
     .gesture-window-title {
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .gesture-status {
-        font-size: 11px;
+        font-size: 14px;
         padding: 8px 10px;
     }
 

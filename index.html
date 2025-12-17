@@ -18,16 +18,32 @@
       <img src="img/beginpaper.jpg" alt="" class="final-page" id="finalPage" />
       <div class="green-overlay" id="greenOverlay"></div>
 
-      <!-- Macintosh окно для жеста -->
+      <!-- Первое окно: приветствие -->
+      <div class="gesture-window" id="welcomeWindow">
+        <div class="gesture-window-header">
+          <h3 class="gesture-window-title">Awareness check</h3>
+        </div>
+        <div class="gesture-window-content">
+          <p class="welcome-text">
+            Hello, traveler.<br />
+            To enter the site - let's do a small mindfulness practice.
+          </p>
+          <button class="ready-button" id="readyButton">Yes, I'm ready</button>
+        </div>
+      </div>
+
+      <!-- Второе окно: жест с камерой -->
       <div class="gesture-window" id="gestureWindow">
         <div class="gesture-window-header">
-          <h3 class="gesture-window-title">Welcome to Dasha Mamba Portfolio</h3>
+          <h3 class="gesture-window-title">Awareness check</h3>
         </div>
         <div class="gesture-window-content" id="gestureContent">
-          <p class="gesture-instruction">
-            To enter the website, please make a pinch gesture<br />
-            (connect your thumb and index finger together)
-          </p>
+          <div class="instruction-row">
+            <p class="gesture-instruction">
+              Make Gyana Mudra - connect the tip of your thumb and index finger together.
+            </p>
+            <img src="img/hand.gif" alt="Gyana Mudra gesture" class="gesture-demo" />
+          </div>
           <div class="video-container">
             <video id="gestureVideo" autoplay playsinline></video>
             <canvas id="gestureCanvas"></canvas>
@@ -37,7 +53,7 @@
           </div>
         </div>
         <div class="success-message" id="successMessage">
-          <p>Thank you for your gesture!</p>
+          <p>Success!</p>
           <p>Welcome to the portfolio...</p>
         </div>
       </div>

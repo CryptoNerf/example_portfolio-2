@@ -166,6 +166,7 @@ header {
 
 .links p {
     margin-bottom: 16px;
+    font-weight: bold;
 }
 
 .links a {

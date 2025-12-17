@@ -6,9 +6,11 @@
 class IntroAnimation {
     constructor() {
         this.overlay = document.getElementById('introOverlay');
+        this.welcomeWindow = document.getElementById('welcomeWindow');
         this.gestureWindow = document.getElementById('gestureWindow');
         this.gestureContent = document.getElementById('gestureContent');
         this.successMessage = document.getElementById('successMessage');
+        this.readyButton = document.getElementById('readyButton');
         this.ghostPagesContainer = document.getElementById('ghostPages');
         this.finalPage = document.getElementById('finalPage');
         this.greenOverlay = document.getElementById('greenOverlay');
@@ -41,10 +43,30 @@ class IntroAnimation {
             this.greenOverlay.classList.add('greening');
         }, 2500);
 
-        // Шаг 3: После появления зеленого экрана показываем окно с жестом
+        // Шаг 3: После завершения зеленения (2s) показываем приветственное окно
+        setTimeout(() => {
+            this.showWelcomeWindow();
+        }, 4600); // 2500 + 2000ms (длительность анимации зеленения) + 100ms буфер
+    }
+
+    showWelcomeWindow() {
+        // Показываем приветственное окно
+        this.welcomeWindow.classList.add('visible');
+
+        // Обработчик кнопки "I'm ready"
+        this.readyButton.addEventListener('click', () => {
+            this.onReadyClick();
+        });
+    }
+
+    onReadyClick() {
+        // Скрываем приветственное окно
+        this.welcomeWindow.classList.remove('visible');
+
+        // Через небольшую задержку показываем окно с жестом
         setTimeout(() => {
             this.showGestureWindow();
-        }, 2600); // 2500 + 100ms (резкое появление зеленого)
+        }, 300);
     }
 
     async showGestureWindow() {
@@ -81,10 +103,10 @@ class IntroAnimation {
         // Показываем благодарственное сообщение
         this.successMessage.classList.add('visible');
 
-        // Через 2 секунды скрываем всё интро
+        // Через 4 секунды скрываем всё интро
         setTimeout(() => {
             this.hideIntro();
-        }, 2000);
+        }, 4000);
     }
 
     showFallbackOption() {
