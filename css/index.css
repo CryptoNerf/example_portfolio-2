@@ -59,12 +59,53 @@ header {
     max-width: 800px;
     width: 100%;
     display: block;
+    position: relative;
+    /* filter: invert(1) */
 }
 
 .header-image img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.header-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.header-img-1 {
+    position: relative;
+    z-index: 1;
+}
+
+.header-img-2 {
+    z-index: 2;
+    animation: headerFade 12s ease-in-out infinite;
+}
+
+@keyframes headerFade {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Колонка с фото */
@@ -149,6 +190,10 @@ header {
     /* text-align: justify; */
 }
 
+.description-text {
+    font-size: 14px;
+}
+
 .description {
     /* max-width: 630px;
     width: 100%;
@@ -157,6 +202,7 @@ header {
     align-items: flex-start; */
     margin-left: 58px;
     letter-spacing: -0.2px;
+    font-size: 14px;
 }
 
 .links {
@@ -170,23 +216,69 @@ header {
 }
 
 .links a {
-    background: #000000;
-    color: #00FF00;
-    padding: 2px 6px;
     text-decoration: none;
-    border-radius: 2px;
 }
 
 .links a:hover {
-    color: #33FF33;
+    /* color: #33FF33; */
+    background: #000000;
+    color: #00FF00;
 }
 
 .dot {
-    background: #000000;
-    color: #00FF00;
+    background: transparent;
+    color: #000000;
     display: block;
     margin-bottom: 4px;
     width: fit-content;
+    animation: snakeDot 3s infinite;
+}
+
+.dot-1 {
+    animation-delay: 0s;
+}
+
+.dot-2 {
+    animation-delay: 0.5s;
+}
+
+.dot-3 {
+    animation-delay: 1s;
+}
+
+.dot-4 {
+    animation-delay: 1.5s;
+}
+
+.dot-5 {
+    animation-delay: 2s;
+}
+
+.dot-6 {
+    animation-delay: 2.5s;
+}
+
+@keyframes snakeDot {
+    0% {
+        background: transparent;
+        color: #000000;
+    }
+    10% {
+        background: #000000;
+        color: #00FF00;
+    }
+    20% {
+        background: #000000;
+        color: #00FF00;
+    }
+    30% {
+        background: transparent;
+        color: #000000;
+    }
+    100% {
+        background: transparent;
+        color: #000000;
+    }
 }
 
 .lastword {
