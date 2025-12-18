@@ -294,20 +294,22 @@
     padding: 20px;
 }
 
-/* Контейнер для инструкции и GIF в две колонки */
-.instruction-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.gesture-instruction {
-    flex: 1;
+/* Основная инструкция */
+.gesture-instruction-main {
     font-size: 16px;
     color: #000000;
-    margin: 0;
-    text-align: left;
+    margin: 0 0 15px 0;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Вторичная инструкция */
+.gesture-instruction-sub {
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 6px 10px;
+    margin: 0 0 15px 0;
+    text-align: center;
     line-height: 1.4;
 }
 
@@ -352,10 +354,9 @@
 /* GIF демонстрация жеста */
 .gesture-demo {
     display: block;
-    width: 150px;
+    width: 120px;
     height: auto;
-    margin: 0;
-    flex-shrink: 0;
+    margin: 0 auto 15px;
     /* border: 1px solid #4A4237; */
 }
 
@@ -396,7 +397,7 @@
 /* Статус детекции */
 .gesture-status {
     text-align: center;
-    font-size: 11px;
+    font-size: 14px;
     color: #000000;
     padding: 8px 12px;
     background: #F7F4E5;

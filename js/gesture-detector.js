@@ -115,6 +115,11 @@ class GestureDetector {
             // Проверяем жест щипка
             const isPinching = this.detectPinch(landmarks);
 
+            // Если жест распознан, выделяем зелёным кончики пальцев
+            if (isPinching) {
+                this.drawGreenTips(landmarks);
+            }
+
             if (isPinching) {
                 this.stablePinchFrames++;
 
@@ -173,7 +178,7 @@ class GestureDetector {
             Math.pow(thumb.z - indexFinger.z, 2)
         );
 
-        const PINCH_THRESHOLD = 0.04; // Строгий порог для пинча
+        const PINCH_THRESHOLD = 0.065; // Порог для пинча (увеличен для лучшей детекции)
         const isPinching = thumbIndexDistance < PINCH_THRESHOLD;
 
         if (!isPinching) return false;
@@ -216,6 +221,45 @@ class GestureDetector {
         } else if (type === 'success') {
             this.statusElement.classList.add('success');
         }
+    }
+
+    drawGreenTips(landmarks) {
+        // Точка 4 - кончик большого пальца
+        const thumbTip = landmarks[4];
+        // Точка 8 - кончик указательного пальца
+        const indexTip = landmarks[8];
+
+        // Рисуем зелёные точки на кончиках пальцев
+        const canvasWidth = this.canvas.width;
+        const canvasHeight = this.canvas.height;
+
+        this.ctx.fillStyle = '#00FF00';
+        this.ctx.strokeStyle = '#00FF00';
+        this.ctx.lineWidth = 2;
+
+        // Большой палец
+        this.ctx.beginPath();
+        this.ctx.arc(
+            thumbTip.x * canvasWidth,
+            thumbTip.y * canvasHeight,
+            6,
+            0,
+            2 * Math.PI
+        );
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // Указательный палец
+        this.ctx.beginPath();
+        this.ctx.arc(
+            indexTip.x * canvasWidth,
+            indexTip.y * canvasHeight,
+            6,
+            0,
+            2 * Math.PI
+        );
+        this.ctx.fill();
+        this.ctx.stroke();
     }
 
     onPinch(callback) {

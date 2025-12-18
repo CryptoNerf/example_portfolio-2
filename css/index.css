@@ -181,7 +181,7 @@ header {
 }
 
 .links {
-    margin-top: 36px;
+    margin-top: 42px;
     margin-left: 190px;
 }
 
@@ -276,6 +276,8 @@ header {
     margin-right: -20px;
     margin-left: 20px;
     margin-bottom: 30px;
+    filter: url(#inkEffect);
+    transition: filter 0.3s ease;
 }
 /* ==========================================
    Адаптивность
