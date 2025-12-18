@@ -449,15 +449,55 @@
 /* Сообщение об успехе */
 .success-message {
     display: none;
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-    color: #000000;
-    line-height: 1.6;
+    padding: 0;
 }
 
 .success-message.visible {
     display: block;
+}
+
+.success-header {
+    background: #00FF00;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 4px;
+    text-align: left;
+    letter-spacing: 0.5px;
+    border: 1px solid #000000;
+}
+
+/* Скрыть основную шапку когда показывается success */
+.gesture-window:has(.success-message.visible) .gesture-window-header {
+    display: none;
+}
+
+.success-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 20px;
+    background: #C0C0C0;
+}
+
+.hand-left {
+    width: 100px;
+    height: auto;
+    transform: scaleX(-1);
+}
+
+.hand-right {
+    width: 100px;
+    height: auto;
+}
+
+.peace-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0;
+    white-space: nowrap;
 }
 
 /* Скрыть основной контент при успехе */
@@ -524,8 +564,11 @@
         padding: 8px 10px;
     }
 
-    .success-message {
-        font-size: 14px;
-        padding: 15px;
+    .hand-left, .hand-right {
+        width: 80px;
+    }
+
+    .peace-text {
+        font-size: 16px;
     }
 }

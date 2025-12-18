@@ -1,12 +1,31 @@
 /* ==========================================
    Chapter Page - Стили
    ========================================== */
+.about-content {
+    max-width: 630px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-title {
+    font-family: Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    align-self: flex-start;
+    padding-left: 40px;
+    padding-top: 20px;
+}
 
 .chapters-title {
     font-family: Courier, monospace;
     font-size: 14px;
     font-weight: 700;
-    color: #313431;
+    color: #000000;
     margin-bottom: 30px;
 }
 
@@ -14,6 +33,7 @@
     display: flex;
     gap: 40px;
     align-items: flex-start;
+    padding: 0 20px 0px 20px;
 }
 
 /* Левая колонка с изображением книги */
@@ -50,7 +70,7 @@
     font-family: Courier, monospace;
     font-size: 14px;
     font-weight: 700;
-    color: #313431;
+    color: #000000;
     margin: 0;
     line-height: 1.4;
 }
@@ -59,8 +79,8 @@
     font-family: Courier, monospace;
     font-size: 14px;
     font-weight: 700;
-    color: #313431;
-    line-height: 1.4;
+    color: #000000;
+    /* line-height: 1.4; */
     margin: 0;
 }
 
@@ -104,6 +124,6 @@
     .chapter-number,
     .chapter-name,
     .chapter-description {
-        font-size: 12px;
+        font-size: 14px;
     }
 }

@@ -428,7 +428,7 @@ body {
 
 .grid-header h3 {
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     font-family: 'MS Sans Serif', Arial, sans-serif;
     margin: 0;
@@ -898,7 +898,7 @@ body {
     }
 
     .grid-header h3 {
-        font-size: 11px;
+        font-size: 14px;
         padding: 0;
     }
 

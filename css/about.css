@@ -16,10 +16,11 @@
     font-family: Courier, monospace;
     font-size: 14px;
     font-weight: 700;
-    color: #313431;
+    color: #000000;
     margin: 0;
     align-self: flex-start;
-    padding-left: 80px;
+    padding-left: 20px;
+    padding-top: 20px;
 }
 
 .about-image-link {
@@ -29,6 +30,7 @@
     width: 100%;
     transition: opacity 0.3s ease;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .about-image-link:hover {
@@ -105,7 +107,7 @@
 
     .about-title {
         padding-left: 20px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .about-image {
