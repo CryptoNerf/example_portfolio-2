@@ -68,24 +68,15 @@ header {
 }
 
 .header-img {
-    animation: headerInvert 12s ease-in-out infinite;
+    animation: headerInvert 9s steps(1, jump-end) infinite;
 }
 
 @keyframes headerInvert {
     0% {
         filter: invert(0);
     }
-    40% {
-        filter: invert(0);
-    }
-    50% {
+    66.67% {
         filter: invert(1);
-    }
-    85% {
-        filter: invert(1);
-    }
-    95% {
-        filter: invert(0);
     }
     100% {
         filter: invert(0);
