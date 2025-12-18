@@ -200,7 +200,9 @@ header {
 }
 
 .links a {
+    font-weight: normal;
     text-decoration: none;
+    color:#000000
 }
 
 .links a:hover {
@@ -215,7 +217,7 @@ header {
     display: block;
     margin-bottom: 4px;
     width: fit-content;
-    animation: snakeDot 3s infinite;
+    animation: snakeDot 4s infinite;
 }
 
 .dot-1 {
