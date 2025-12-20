@@ -144,6 +144,30 @@ body {
     display: block;
 }
 
+/* Зелёный оверлей для специальных страниц */
+.green-page-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00FF53;
+    mix-blend-mode: color;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    animation: greenFadeIn 2.5s ease-in-out 0.5s forwards;
+}
+
+@keyframes greenFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* Стили для StPageFlip wrapper */
 .stf__wrapper {
     /* box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important; */

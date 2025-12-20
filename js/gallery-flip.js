@@ -126,6 +126,17 @@ class PhotoFlipbook {
     createBookPages() {
         this.bookContainer.innerHTML = '';
 
+        // Список страниц с эффектом зеленения
+        const greenPages = [
+            '05_left.jpg', '05_right.jpg',
+            '07_left.jpg', '07_right.jpg',
+            '14_left.jpg', '14_right.jpg',
+            '21_left.jpg', '21_right.jpg',
+            '29_left.jpg', '29_right.jpg',
+            '30_left.jpg', '30_right.jpg',
+            '39_left.jpg', '39_right.jpg'
+        ];
+
         this.photos.forEach((photo, index) => {
             const page = document.createElement('div');
             page.className = 'page';
@@ -137,6 +148,16 @@ class PhotoFlipbook {
             img.draggable = false;
 
             page.appendChild(img);
+
+            // Добавляем зеленый overlay если страница в списке
+            const shouldBeGreen = greenPages.some(greenPage => photo.includes(greenPage));
+            if (shouldBeGreen) {
+                const greenOverlay = document.createElement('div');
+                greenOverlay.className = 'green-page-overlay';
+                page.appendChild(greenOverlay);
+                console.log('Добавлен зеленый overlay для:', photo);
+            }
+
             this.bookContainer.appendChild(page);
         });
     }
@@ -999,11 +1020,8 @@ document.addEventListener('DOMContentLoaded', () => {
     photos.push('img/glava1/01_cover.jpg');
 
     // Добавляем развороты: левые и правые страницы
-    for (let i = 1; i <= 35; i++) {
+    for (let i = 2; i <= 41; i++) {
         const num = i.toString().padStart(2, '0');
-
-        // Пропускаем первую страницу (она уже добавлена как обложка)
-        if (i === 1) continue;
 
         // Пропускаем страницы 28 (они будут показываться при hover на страницах 27)
         if (i === 28) continue;
@@ -1018,7 +1036,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Задняя обложка
-    photos.push('img/glava1/35_right.jpg');
+    photos.push('img/glava1/last_cover.jpg');
 
     console.log('Всего страниц в книге:', photos.length);
 

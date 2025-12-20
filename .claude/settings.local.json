@@ -4,7 +4,8 @@
       "Bash(dir:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
-      "Bash(nul)"
+      "Bash(nul)",
+      "Bash(python split_photos.py:*)"
     ],
     "deny": [],
     "ask": []
