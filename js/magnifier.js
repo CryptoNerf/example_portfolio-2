@@ -106,6 +106,13 @@ class ImageMagnifier {
 
 // Автоматическая инициализация для всех изображений с классом .fullscreen-image и .about-image
 document.addEventListener('DOMContentLoaded', () => {
+    // Отключаем лупу на мобильных устройствах (экраны меньше 768px)
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+        return; // Не инициализируем лупу на мобильных
+    }
+
     // Для aboutdasha-full.html
     const fullscreenImages = document.querySelectorAll('.fullscreen-image');
     fullscreenImages.forEach(img => {

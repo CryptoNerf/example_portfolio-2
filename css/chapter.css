@@ -104,6 +104,10 @@
         max-width: 300px;
         margin: 0 auto;
     }
+
+    br.desktop-only {
+        display: none;
+    }
 }
 
 /* Мобильные устройства */
