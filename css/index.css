@@ -536,3 +536,30 @@ footer {
     height: auto;
     display: block;
 }
+
+/* ==========================================
+   Mobile vs Desktop Header/Footer Images
+   ========================================== */
+/* Show desktop images by default, hide mobile */
+.header-image .header-mobile,
+.footer-image .footer-mobile {
+    display: none !important;
+}
+
+.header-image .header-desktop,
+.footer-image .footer-desktop {
+    display: block !important;
+}
+
+/* On mobile devices (max-width: 768px), show mobile images and hide desktop */
+@media (max-width: 768px) {
+    .header-image .header-mobile,
+    .footer-image .footer-mobile {
+        display: block !important;
+    }
+
+    .header-image .header-desktop,
+    .footer-image .footer-desktop {
+        display: none !important;
+    }
+}
