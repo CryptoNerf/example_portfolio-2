@@ -117,7 +117,7 @@ body {
 
 /* Повёрнутая книга */
 .book-wrapper.rotated {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
 }
 
 #book {
@@ -605,25 +605,21 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-/* Кнопка закрытия (Macintosh Style) */
+/* Кнопка закрытия (Windows 95 Style) */
 .close-zoom {
     position: absolute;
     top: 20px;
     right: 20px;
     width: 32px;
     height: 32px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 6px;
-    color: #2A2520;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #404040;
+    border-right: 2px solid #404040;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #808080;
+    color: #000000;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
@@ -632,26 +628,20 @@ body {
     justify-content: center;
     transition: none;
     z-index: 2001;
-    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.35);
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
 .close-zoom:hover {
-    background: #D4C9A8;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
+    background: #D0D0D0;
 }
 
 .close-zoom:active {
-    background: #4A4237;
-    color: #E5DCC5;
-    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.3);
+    background: #C0C0C0;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 2px #000000;
 }
 
 /* Контейнер изображения */
@@ -676,7 +666,13 @@ body {
     pointer-events: none; /* Предотвращаем перетаскивание браузером */
 }
 
-/* Панель управления зумом (Macintosh Style) */
+/* Уменьшаем размер изображения при повороте на 90/270 градусов */
+.zoom-container img.rotated-vertical {
+    max-width: 85vh;
+    max-height: 85vh;
+}
+
+/* Панель управления зумом (Windows 95 Style) */
 .zoom-controls {
     position: absolute;
     bottom: 30px;
@@ -685,100 +681,66 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: #D9CDB0;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 2px,
-            rgba(74, 66, 55, 0.12) 2px,
-            rgba(74, 66, 55, 0.12) 4px
-        ),
-        repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 2px,
-            rgba(74, 66, 55, 0.08) 2px,
-            rgba(74, 66, 55, 0.08) 4px
-        );
+    background: #C0C0C0;
     padding: 10px 16px;
-    border-radius: 12px;
-    border: 2px solid #4A4237;
-    box-shadow: 3px 3px 0 rgba(74, 66, 55, 0.35);
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #404040;
+    border-right: 2px solid #404040;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #808080;
     z-index: 2001;
 }
 
 .zoom-control-btn {
     width: 36px;
     height: 36px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 6px;
+    background: #C0C0C0;
+    border: none;
+    border-top: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #404040;
+    border-right: 2px solid #404040;
+    box-shadow: inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #808080;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: none;
-    box-shadow: 2px 2px 0 rgba(74, 66, 55, 0.3);
 }
 
 .zoom-control-btn:hover {
-    background: #D4C9A8;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.12) 1px,
-            rgba(74, 66, 55, 0.12) 2px
-        );
+    background: #D0D0D0;
 }
 
 .zoom-control-btn:active {
-    background: #C4B89A;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.15) 1px,
-            rgba(74, 66, 55, 0.15) 2px
-        );
-    box-shadow: inset 2px 2px 0 rgba(74, 66, 55, 0.25);
+    background: #C0C0C0;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 2px #000000;
 }
 
 .zoom-control-btn svg {
-    color: #2A2520;
+    color: #000000;
 }
 
 .zoom-level {
-    color: #2A2520;
+    color: #000000;
     font-size: 12px;
     font-weight: bold;
     min-width: 50px;
     text-align: center;
     padding: 4px 10px;
-    background: #E5DCC5;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(74, 66, 55, 0.08) 1px,
-            rgba(74, 66, 55, 0.08) 2px
-        );
-    border: 2px solid #4A4237;
-    border-radius: 4px;
-    box-shadow: inset 1px 1px 2px rgba(74, 66, 55, 0.2);
-    font-family: 'Chicago', 'Charcoal', 'Geneva', 'Monaco', monospace;
+    background: #FFFFFF;
+    border: none;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-bottom: 2px solid #DFDFDF;
+    border-right: 2px solid #DFDFDF;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
 /* Overlay для режима увеличения */
@@ -1005,4 +967,76 @@ body {
 
 .page img {
     will-change: opacity;
+}
+
+/* ==========================================
+   Модальное окно приветствия
+   ========================================== */
+
+.welcome-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.welcome-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.welcome-content {
+    background: rgba(255, 255, 255, 255);
+    padding: 50px 70px;
+    border-radius: 12px;
+    border: 2px solid #000000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 650px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-style: italic; */
+    font-size: 18px;
+}
+
+.welcome-green-dot {
+    width: 16px;
+    height: 16px;
+    background: #00FF53;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow:
+        0 0 10px #00FF53,
+        0 0 20px #00FF53,
+        0 0 30px #00FF53,
+        0 0 40px rgba(0, 255, 83, 0.5);
+    animation: greenPulse 2s ease-in-out infinite;
+}
+
+@keyframes greenPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+.welcome-content p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    margin: 0;
 }

@@ -11,6 +11,9 @@ class PhotoFlipbook {
         this.totalPages = photos.length;
         this.isRotated = false; // Состояние поворота книги
 
+        // Маппинг страниц к оригинальным разворотам из папки "новые сканы"
+        this.createSpreadMapping();
+
         // Специальные индексы для эффекта hover страниц 27/28
         this.page27LeftIndex = null;
         this.page27RightIndex = null;
@@ -61,6 +64,57 @@ class PhotoFlipbook {
         this.zoomLevelSpan = document.getElementById('zoomLevel');
 
         this.init();
+    }
+
+    /**
+     * Создание маппинга страниц к оригинальным разворотам
+     */
+    createSpreadMapping() {
+        // Маппинг: индекс страницы -> путь к оригинальному развороту
+        this.spreadMapping = {
+            0: 'новые сканы/01 обложка.jpg',
+            1: 'новые сканы/02 new.jpg', 2: 'новые сканы/02 new.jpg',
+            3: 'новые сканы/03 new.jpg', 4: 'новые сканы/03 new.jpg',
+            5: 'новые сканы/04.jpg', 6: 'новые сканы/04.jpg',
+            7: 'новые сканы/04аЗЕЛ.jpg', 8: 'новые сканы/04аЗЕЛ.jpg',
+            9: 'новые сканы/05 БУДЕТ МЕН.jpg', 10: 'новые сканы/05 БУДЕТ МЕН.jpg',
+            11: 'новые сканы/07-а ЗЕЛ КАЛЬКА.jpg', 12: 'новые сканы/07-а ЗЕЛ КАЛЬКА.jpg',
+            13: 'новые сканы/08.jpg', 14: 'новые сканы/08.jpg',
+            15: 'новые сканы/9без.jpg', 16: 'новые сканы/9без.jpg',
+            17: 'новые сканы/9 ДО.jpg', 18: 'новые сканы/9 ДО.jpg',
+            19: 'новые сканы/11 .jpg', 20: 'новые сканы/11 .jpg',
+            21: 'новые сканы/11а.jpg', 22: 'новые сканы/11а.jpg',
+            23: 'новые сканы/11б.jpg', 24: 'новые сканы/11б.jpg',
+            25: 'новые сканы/12 ЗЕЛ КАЛЬКА.jpg', 26: 'новые сканы/12 ЗЕЛ КАЛЬКА.jpg',
+            27: 'новые сканы/13 new.jpg', 28: 'новые сканы/13 new.jpg',
+            29: 'новые сканы/14 new.jpg', 30: 'новые сканы/14 new.jpg',
+            31: 'новые сканы/15 new.jpg', 32: 'новые сканы/15 new.jpg',
+            33: 'новые сканы/20без.jpg', 34: 'новые сканы/20без.jpg',
+            35: 'новые сканы/21.jpg', 36: 'новые сканы/21.jpg',
+            37: 'новые сканы/22 new.jpg', 38: 'новые сканы/22 new.jpg',
+            39: 'новые сканы/23 ЗЕЛ ВСЕ.jpg', 40: 'новые сканы/23 ЗЕЛ ВСЕ.jpg',
+            41: 'новые сканы/24.jpg', 42: 'новые сканы/24.jpg',
+            43: 'новые сканы/25.jpg', 44: 'новые сканы/25.jpg',
+            45: 'новые сканы/26.jpg', 46: 'новые сканы/26.jpg',
+            47: 'новые сканы/27.jpg', 48: 'новые сканы/27.jpg',
+            49: 'новые сканы/28а.jpg', 50: 'новые сканы/28а.jpg',
+            51: 'новые сканы/28б.jpg', 52: 'новые сканы/28б.jpg',
+            // 28 пропускается в photos массиве
+            53: 'новые сканы/30аБ ЗЕЛ КАЛЬК.jpg', 54: 'новые сканы/30аБ ЗЕЛ КАЛЬК.jpg',
+            55: 'новые сканы/30бЗЕЛ ВСЕ.jpg', 56: 'новые сканы/30бЗЕЛ ВСЕ.jpg',
+            57: 'новые сканы/30г.jpg', 58: 'новые сканы/30г.jpg',
+            59: 'новые сканы/36.jpg', 60: 'новые сканы/36.jpg',
+            61: 'новые сканы/37.jpg', 62: 'новые сканы/37.jpg',
+            63: 'новые сканы/38 без.jpg', 64: 'новые сканы/38 без.jpg',
+            65: 'новые сканы/39 new.jpg', 66: 'новые сканы/39 new.jpg',
+            67: 'новые сканы/40.jpg', 68: 'новые сканы/40.jpg',
+            69: 'новые сканы/41.jpg', 70: 'новые сканы/41.jpg',
+            71: 'новые сканы/42.jpg', 72: 'новые сканы/42.jpg',
+            73: 'новые сканы/43 без ЗЕЛ КАЛЬК.jpg', 74: 'новые сканы/43 без ЗЕЛ КАЛЬК.jpg',
+            75: 'новые сканы/43 без.jpg', 76: 'новые сканы/43 без.jpg',
+            77: 'новые сканы/45 посл этот.jpg', 78: 'новые сканы/45 посл этот.jpg',
+            79: 'новые сканы/46 обложка2.jpg'
+        };
     }
 
     /**
@@ -723,7 +777,7 @@ class PhotoFlipbook {
 
     /**
      * Обработка клика по overlay в режиме увеличения
-     * Открывает модальное окно с текущей страницей
+     * Открывает модальное окно с оригинальным разворотом
      */
     handleOverlayClick(e) {
         // Предотвращаем любое взаимодействие с книгой
@@ -739,33 +793,34 @@ class PhotoFlipbook {
 
         console.log('Клик X:', clickX, 'Центр книги X:', bookCenterX);
 
-        let pageToOpen;
+        let pageIndex;
 
         // Если первая страница (обложка) - всегда открываем её
         if (this.currentPage === 0) {
-            pageToOpen = 0;
+            pageIndex = 0;
         }
         // Если последняя страница (задняя обложка) - всегда открываем её
         else if (this.currentPage === this.totalPages - 1) {
-            pageToOpen = this.currentPage;
+            pageIndex = this.currentPage;
         }
         // Разворот - определяем левую или правую страницу
         else {
             if (clickX < bookCenterX) {
                 // Клик по левой стороне - левая страница
-                pageToOpen = this.currentPage;
-                console.log('Левая страница:', pageToOpen);
+                pageIndex = this.currentPage;
+                console.log('Левая страница:', pageIndex);
             } else {
                 // Клик по правой стороне - правая страница
-                pageToOpen = this.currentPage + 1;
-                console.log('Правая страница:', pageToOpen);
+                pageIndex = this.currentPage + 1;
+                console.log('Правая страница:', pageIndex);
             }
         }
 
-        // Проверяем что индекс корректный
-        if (pageToOpen >= 0 && pageToOpen < this.photos.length) {
-            console.log('Открываем страницу:', pageToOpen, this.photos[pageToOpen]);
-            this.openZoomModal(this.photos[pageToOpen]);
+        // Проверяем что индекс корректный и есть маппинг к оригинальному развороту
+        if (pageIndex >= 0 && pageIndex < this.photos.length && this.spreadMapping[pageIndex]) {
+            const spreadPath = this.spreadMapping[pageIndex];
+            console.log('Открываем оригинальный разворот:', spreadPath);
+            this.openZoomModal(spreadPath);
             this.toggleZoomMode();
         }
     }
@@ -839,20 +894,21 @@ class PhotoFlipbook {
         this.zoomImage.style.transform = `translate(${this.imageOffsetX}px, ${this.imageOffsetY}px) scale(${this.currentZoomLevel}) rotate(${this.imageRotation}deg)`;
         this.zoomLevelSpan.textContent = `${Math.round(this.currentZoomLevel * 100)}%`;
 
-        // Меняем курсор в зависимости от масштаба
-        if (this.currentZoomLevel > 1) {
-            this.zoomContainer.style.cursor = 'grab';
+        // Добавляем класс для вертикальной ориентации при повороте на 90/270 градусов
+        if (this.imageRotation === 90 || this.imageRotation === 270) {
+            this.zoomImage.classList.add('rotated-vertical');
         } else {
-            this.zoomContainer.style.cursor = 'default';
+            this.zoomImage.classList.remove('rotated-vertical');
         }
+
+        // Всегда показываем курсор grab
+        this.zoomContainer.style.cursor = 'grab';
     }
 
     /**
      * Начать перетаскивание изображения
      */
     startDrag(e) {
-        if (this.currentZoomLevel <= 1) return;
-
         // Игнорируем клики по кнопкам
         if (e.target.closest('button')) return;
 
@@ -889,7 +945,7 @@ class PhotoFlipbook {
     endDrag() {
         if (this.isDragging) {
             this.isDragging = false;
-            this.zoomContainer.style.cursor = this.currentZoomLevel > 1 ? 'grab' : 'default';
+            this.zoomContainer.style.cursor = 'grab';
         }
     }
 
@@ -1042,4 +1098,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Создание экземпляра flipbook
     const flipbook = new PhotoFlipbook(photos);
+
+    // Показ приветственного модального окна
+    const welcomeModal = document.getElementById('welcomeModal');
+    if (welcomeModal) {
+        // Показываем окно после небольшой задержки
+        setTimeout(() => {
+            welcomeModal.classList.add('active');
+        }, 500);
+
+        // Скрываем окно через 10 секунд
+        setTimeout(() => {
+            welcomeModal.classList.remove('active');
+        }, 10500);
+    }
 });
