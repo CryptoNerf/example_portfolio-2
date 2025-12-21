@@ -99,21 +99,21 @@ class PhotoFlipbook {
             47: 'новые сканы/27.jpg', 48: 'новые сканы/27.jpg',
             49: 'новые сканы/28а.jpg', 50: 'новые сканы/28а.jpg',
             51: 'новые сканы/28б.jpg', 52: 'новые сканы/28б.jpg',
-            // 28 пропускается в photos массиве
-            53: 'новые сканы/30аБ ЗЕЛ КАЛЬК.jpg', 54: 'новые сканы/30аБ ЗЕЛ КАЛЬК.jpg',
-            55: 'новые сканы/30бЗЕЛ ВСЕ.jpg', 56: 'новые сканы/30бЗЕЛ ВСЕ.jpg',
-            57: 'новые сканы/30г.jpg', 58: 'новые сканы/30г.jpg',
-            59: 'новые сканы/36.jpg', 60: 'новые сканы/36.jpg',
-            61: 'новые сканы/37.jpg', 62: 'новые сканы/37.jpg',
-            63: 'новые сканы/38 без.jpg', 64: 'новые сканы/38 без.jpg',
-            65: 'новые сканы/39 new.jpg', 66: 'новые сканы/39 new.jpg',
-            67: 'новые сканы/40.jpg', 68: 'новые сканы/40.jpg',
-            69: 'новые сканы/41.jpg', 70: 'новые сканы/41.jpg',
-            71: 'новые сканы/42.jpg', 72: 'новые сканы/42.jpg',
-            73: 'новые сканы/43 без ЗЕЛ КАЛЬК.jpg', 74: 'новые сканы/43 без ЗЕЛ КАЛЬК.jpg',
-            75: 'новые сканы/43 без.jpg', 76: 'новые сканы/43 без.jpg',
-            77: 'новые сканы/45 посл этот.jpg', 78: 'новые сканы/45 посл этот.jpg',
-            79: 'новые сканы/46 обложка2.jpg'
+            53: 'новые сканы/29.jpg', 54: 'новые сканы/29.jpg',
+            55: 'новые сканы/30аБ ЗЕЛ КАЛЬК.jpg', 56: 'новые сканы/30аБ ЗЕЛ КАЛЬК.jpg',
+            57: 'новые сканы/30бЗЕЛ ВСЕ.jpg', 58: 'новые сканы/30бЗЕЛ ВСЕ.jpg',
+            59: 'новые сканы/30г.jpg', 60: 'новые сканы/30г.jpg',
+            61: 'новые сканы/36.jpg', 62: 'новые сканы/36.jpg',
+            63: 'новые сканы/37.jpg', 64: 'новые сканы/37.jpg',
+            65: 'новые сканы/38 без.jpg', 66: 'новые сканы/38 без.jpg',
+            67: 'новые сканы/39 new.jpg', 68: 'новые сканы/39 new.jpg',
+            69: 'новые сканы/40.jpg', 70: 'новые сканы/40.jpg',
+            71: 'новые сканы/41.jpg', 72: 'новые сканы/41.jpg',
+            73: 'новые сканы/42.jpg', 74: 'новые сканы/42.jpg',
+            75: 'новые сканы/43 без ЗЕЛ КАЛЬК.jpg', 76: 'новые сканы/43 без ЗЕЛ КАЛЬК.jpg',
+            77: 'новые сканы/43 без.jpg', 78: 'новые сканы/43 без.jpg',
+            79: 'новые сканы/45 посл этот.jpg', 80: 'новые сканы/45 посл этот.jpg',
+            81: 'новые сканы/46 обложка2.jpg'
         };
     }
 
@@ -183,12 +183,12 @@ class PhotoFlipbook {
         // Список страниц с эффектом зеленения
         const greenPages = [
             '05_left.jpg', '05_right.jpg',
-            '07_left.jpg', '07_right.jpg',
-            '14_left.jpg', '14_right.jpg',
+            '07_right.jpg',
+            '14_right.jpg',
             '21_left.jpg', '21_right.jpg',
-            '29_left.jpg', '29_right.jpg',
+            '29_right.jpg',
             '30_left.jpg', '30_right.jpg',
-            '39_left.jpg', '39_right.jpg'
+            '39_left.jpg'
         ];
 
         this.photos.forEach((photo, index) => {
@@ -402,8 +402,8 @@ class PhotoFlipbook {
             this.currentPage = e.data;
             this.updateControls();
             this.adjustBookWrapper();
-            // Триггер анимации страниц 27/28
-            this.checkAndTriggerPage27Animation();
+            // Триггер анимации страниц 27/28 - ОТКЛЮЧЕНО
+            // this.checkAndTriggerPage27Animation();
         });
 
         this.pageFlip.on('changeState', () => {
@@ -1035,8 +1035,8 @@ class PhotoFlipbook {
             this.currentPage = e.data;
             this.updateControls();
             this.adjustBookWrapper();
-            // Триггер анимации страниц 27/28
-            this.checkAndTriggerPage27Animation();
+            // Триггер анимации страниц 27/28 - ОТКЛЮЧЕНО
+            // this.checkAndTriggerPage27Animation();
         });
 
         // Переходим на сохраненную страницу
@@ -1079,9 +1079,6 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 2; i <= 41; i++) {
         const num = i.toString().padStart(2, '0');
 
-        // Пропускаем страницы 28 (они будут показываться при hover на страницах 27)
-        if (i === 28) continue;
-
         // Левая страница
         const leftPath = `img/glava1/${num}_left.jpg`;
         photos.push(leftPath);
@@ -1099,17 +1096,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // Создание экземпляра flipbook
     const flipbook = new PhotoFlipbook(photos);
 
-    // Показ приветственного модального окна
-    const welcomeModal = document.getElementById('welcomeModal');
-    if (welcomeModal) {
-        // Показываем окно после небольшой задержки
-        setTimeout(() => {
-            welcomeModal.classList.add('active');
-        }, 500);
+    // Показ подсказки для поворота на развороте 27
+    const rotateHint = document.getElementById('rotateHint');
+    const rotateBtn = document.getElementById('rotateBtn');
 
-        // Скрываем окно через 10 секунд
-        setTimeout(() => {
-            welcomeModal.classList.remove('active');
-        }, 10500);
+    // Функция для позиционирования подсказки над кнопкой поворота
+    function positionHintAboveRotateButton() {
+        if (rotateBtn && rotateHint) {
+            const btnRect = rotateBtn.getBoundingClientRect();
+            const hintRect = rotateHint.getBoundingClientRect();
+
+            // Вычисляем позицию: центр кнопки минус половина ширины подсказки
+            const leftPosition = btnRect.left + (btnRect.width / 2) - (hintRect.width / 2);
+
+            rotateHint.style.left = leftPosition + 'px';
+            rotateHint.style.transform = 'none';
+        }
+    }
+
+    if (rotateHint) {
+        let hintShown = false;
+
+        console.log('Инициализация подсказки. page27LeftIndex:', flipbook.page27LeftIndex);
+
+        // Отслеживаем перелистывание страниц
+        flipbook.pageFlip.on('flip', (e) => {
+            const currentPage = e.data;
+
+            console.log('Перелистывание на страницу:', currentPage, 'page27LeftIndex:', flipbook.page27LeftIndex);
+
+            // Проверяем на 27 (номер страницы в книге, где появляется анимация 27/28)
+            if (!hintShown && currentPage === 27) {
+                console.log('Показываем подсказку для поворота!');
+
+                // Показываем подсказку через небольшую задержку
+                setTimeout(() => {
+                    positionHintAboveRotateButton(); // Позиционируем перед показом
+                    rotateHint.classList.add('visible');
+                }, 500);
+
+                // Скрываем через 5 секунд
+                setTimeout(() => {
+                    rotateHint.classList.remove('visible');
+                    hintShown = true; // Показываем только один раз
+                }, 5500);
+            }
+        });
+
+        // Обновляем позицию при ресайзе окна
+        window.addEventListener('resize', () => {
+            if (rotateHint.classList.contains('visible')) {
+                positionHintAboveRotateButton();
+            }
+        });
     }
 });

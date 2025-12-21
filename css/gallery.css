@@ -901,6 +901,11 @@ body {
         gap: 12px;
         padding: 16px;
     }
+
+    /* Поднимаем панель zoom-controls выше на мобильных */
+    .zoom-controls {
+        bottom: 100px;
+    }
 }
 
 /* ==========================================
@@ -995,7 +1000,7 @@ body {
 }
 
 .welcome-content {
-    background: rgba(255, 255, 255, 255);
+    background: rgba(255, 255, 255, 0.85);
     padding: 50px 70px;
     border-radius: 12px;
     border: 2px solid #000000;
@@ -1034,9 +1039,53 @@ body {
 }
 
 .welcome-content p {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: #000000;
     margin: 0;
+}
+
+/* ==========================================
+   Подсказка для поворота страницы
+   ========================================== */
+
+.rotate-hint {
+    position: fixed;
+    bottom: 75px;
+    left: 0; /* Будет переопределено через JavaScript */
+    transform: none;
+    z-index: 2001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.rotate-hint.visible {
+    opacity: 1;
+}
+
+.rotate-hint img {
+    max-width: 160px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* На мобильных поднимаем подсказку выше */
+@media (max-width: 768px) {
+    .rotate-hint {
+        bottom: 195px;
+    }
+
+    .rotate-hint img {
+        max-width: 140px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .rotate-hint img {
+        max-width: 130px;
+    }
 }

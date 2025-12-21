@@ -79,7 +79,7 @@
 
             <!-- Слайдер прогресса -->
             <input type="range" class="progress-slider" id="progressSlider"
-                   min="0" max="79" value="0" step="1">
+                   min="0" max="81" value="0" step="1">
 
             <!-- Кнопка вперед -->
             <button class="nav-control-btn" id="nextPageBtn" title="Следующая страница">
@@ -90,7 +90,7 @@
 
             <!-- Счетчик фото -->
             <div class="photo-counter">
-                <span id="currentPhoto">1</span>/<span id="totalPhotos">80</span>
+                <span id="currentPhoto">1</span>/<span id="totalPhotos">82</span>
             </div>
         </div>
 
@@ -143,15 +143,9 @@
             </div>
         </div>
 
-        <!-- Модальное окно приветствия -->
-        <div class="welcome-modal" id="welcomeModal">
-            <div class="welcome-content">
-                <div class="welcome-green-dot"></div>
-                <p>Dear reader,<br>
-                for properly perception of the book<br>
-                please use tool bar. Sometimes make sense rotate images.<br><br>
-                Enjoy your reading and don't hurry up.</p>
-            </div>
+        <!-- Подсказка для поворота страницы -->
+        <div class="rotate-hint" id="rotateHint">
+            <img src="img/buble.png" alt="Rotate this page">
         </div>
     </div>
 
