@@ -425,8 +425,27 @@ class PhotoFlipbook {
         this.prevPageBtn.disabled = this.currentPage === 0;
         this.nextPageBtn.disabled = this.currentPage === this.totalPages - 1;
 
+        // Обновление цвета кнопки поворота
+        this.updateRotateButtonColor();
+
         // Обновление активной миниатюры
         this.updateActiveThumbnail();
+    }
+
+    /**
+     * Обновление цвета кнопки поворота (зелёная на разворотах требующих поворота)
+     */
+    updateRotateButtonColor() {
+        // Страницы, которые требуют поворота: 15, 16, 17, 33 (left и right)
+        // Индексы в массиве photos:
+        // 15_left=27, 15_right=28, 16_left=29, 16_right=30, 17_left=31, 17_right=32, 33_left=63, 33_right=64
+        const rotationRequiredPages = [27, 28, 29, 30, 31, 32, 63, 64];
+
+        if (rotationRequiredPages.includes(this.currentPage)) {
+            this.rotateBtn.classList.add('green');
+        } else {
+            this.rotateBtn.classList.remove('green');
+        }
     }
 
     /**

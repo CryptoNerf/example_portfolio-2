@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Book - Gesture Guide</title>
+
+    <!-- StPageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: 'SysfontC';
+            src: url('SysfontC.woff2') format('woff2'),
+                 url('SysfontC.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SysfontC', Arial, monospace;
+            background: #cccccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .book-container {
+            margin: 20px 0;
+        }
+
+        #book {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .page {
+            background: #ffffff;
+            display: block;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .page-inner {
+            width: 100%;
+            height: 100%;
+            border: 3px solid #000000;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        .page-cover .page-inner {
+            background: #000000;
+            color: #ffffff;
+            justify-content: center;
+        }
+
+        .page h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .page-cover h1 {
+            font-size: 48px;
+            border-bottom: 4px solid #ffffff;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .page-cover .author {
+            font-size: 20px;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .page-content {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gesture-description {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .gesture-function {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 2px solid #000000;
+            text-align: center;
+        }
+
+        .gesture-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+            border: 2px solid #000000;
+            min-height: 250px;
+            font-size: 14px;
+            color: #666666;
+            margin-top: auto;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #ffffff;
+            border: 2px solid #000000;
+            font-family: 'SysfontC', Arial, monospace;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 #000000;
+            text-decoration: none;
+            color: #000000;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: #dddddd;
+        }
+
+        .back-button:active {
+            box-shadow: none;
+            transform: translate(2px, 2px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: #ffffff;
+            border: 2px solid #000000;
+            font-family: 'SysfontC', Arial, monospace;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 #000000;
+            text-transform: uppercase;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #dddddd;
+        }
+
+        .nav-button:active:not(:disabled) {
+            box-shadow: none;
+            transform: translate(2px, 2px);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .book-container {
+                margin: 10px 0;
+            }
+
+            .page-inner {
+                padding: 15px;
+            }
+
+            .page h1 {
+                font-size: 20px;
+            }
+
+            .page h2 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .page-cover h1 {
+                font-size: 28px;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+            }
+
+            .page-cover .author {
+                font-size: 16px;
+            }
+
+            .gesture-description,
+            .gesture-function {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .gesture-function {
+                padding: 8px;
+            }
+
+            .gesture-image {
+                min-height: 150px;
+                font-size: 11px;
+            }
+
+            .back-button {
+                padding: 8px 12px;
+                font-size: 12px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .nav-buttons {
+                margin-top: 15px;
+                gap: 10px;
+            }
+
+            .nav-button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .page-inner {
+                padding: 10px;
+            }
+
+            .page h1 {
+                font-size: 16px;
+            }
+
+            .page h2 {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .page-cover h1 {
+                font-size: 24px;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+
+            .page-cover .author {
+                font-size: 14px;
+                margin-top: 15px;
+            }
+
+            .gesture-description,
+            .gesture-function {
+                font-size: 10px;
+                line-height: 1.4;
+            }
+
+            .gesture-function {
+                padding: 6px;
+            }
+
+            .gesture-image {
+                min-height: 100px;
+                font-size: 10px;
+            }
+
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">← BACK</a>
+
+    <div class="book-container">
+        <div id="book">
+            <!-- Cover Page -->
+            <div class="page page-cover" data-density="hard">
+                <div class="page-inner">
+                    <div class="page-content">
+                        <h1>MANUAL BOOK</h1>
+                        <div style="font-size: 24px; text-transform: uppercase;">Gesture Guide</div>
+                        <div class="author">By Alexanyan Emile</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 1: Pinch gesture -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>CREATE MOLECULE</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Pinch gesture<br>
+                        <strong>How to perform:</strong> Bring your thumb and index finger together (pinch position) and hold for 1 second.
+                    </div>
+                    <div class="gesture-function">
+                        → Creates a new molecule at the pinch position
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: pinch_gesture.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Open mouth -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>EDIT MODE</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Open mouth<br>
+                        <strong>How to perform:</strong> Open your mouth wide to activate edit mode (✎).
+                    </div>
+                    <div class="gesture-function">
+                        → Switches to EDIT MODE (✎) for molecule manipulation
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: open_mouth.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3: Palm move -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>MOVE MOLECULE</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Palm (open hand)<br>
+                        <strong>How to perform:</strong> Show your open palm and move it around to reposition molecules.
+                    </div>
+                    <div class="gesture-function">
+                        → Moves the selected molecule to palm position
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: palm_move.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 4: Palm edit -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>SIZE & SHAPE</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Palm in edit mode (✎)<br>
+                        <strong>How to perform:</strong> In edit mode, use your palm width to control size and bend fingers to change shape.<br><br>
+                        • <strong>Palm width</strong> = molecule size<br>
+                        • <strong>Bent fingers</strong> = molecule shape
+                    </div>
+                    <div class="gesture-function">
+                        → Adjusts molecule size and shape dynamically
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: palm_edit.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 5: Lock one -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>LOCK MOLECULE</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> All fingers together<br>
+                        <strong>How to perform:</strong> Close all fingers together (fist position) and hold for 1 second.
+                    </div>
+                    <div class="gesture-function">
+                        → Locks the selected molecule (prevents movement)
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: lock_single.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 6: Lock all -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>LOCK ALL</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Both hands, fingers together<br>
+                        <strong>How to perform:</strong> Close all fingers on both hands together and hold for 1 second.
+                    </div>
+                    <div class="gesture-function">
+                        → Locks ALL molecules on the canvas
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: lock_all.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 7: Unlock -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>UNLOCK</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Pinky finger<br>
+                        <strong>How to perform:</strong> Extend your pinky finger while keeping other fingers closed.
+                    </div>
+                    <div class="gesture-function">
+                        → Unlocks locked molecules
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: unlock.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 8: Delete -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>DELETE MOLECULE</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Crossed fingers<br>
+                        <strong>How to perform:</strong> Cross your index and middle fingers and hold for 1 second.
+                    </div>
+                    <div class="gesture-function">
+                        → Deletes the selected molecule
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: delete.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 9: Sound -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>SOUND DEFORMATION</h2>
+                    <div class="gesture-description">
+                        <strong>Gesture:</strong> Voice/Sound input<br>
+                        <strong>How to perform:</strong> Make sounds or speak near the microphone to create audio-reactive deformations.
+                    </div>
+                    <div class="gesture-function">
+                        → Deforms molecule contours based on sound frequency
+                    </div>
+                    <div class="gesture-image">
+                        [Place image: sound.gif]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 10: Keyboard shortcuts -->
+            <div class="page">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h2>KEYBOARD SHORTCUTS</h2>
+                    <div class="gesture-description" style="font-size: 18px; line-height: 2;">
+                        <strong>Ctrl+C</strong> → Copy selected molecule<br>
+                        <strong>Ctrl+V</strong> → Paste copied molecule<br>
+                        <strong>Ctrl+Z</strong> → Undo last action
+                    </div>
+                    <div class="gesture-function">
+                        → Quick actions using keyboard
+                    </div>
+                    <div class="gesture-image" style="min-height: 150px;">
+                        [Place image: keyboard.png]
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Cover -->
+            <div class="page page-cover" data-density="hard">
+                <div class="page-inner">
+                    <div class="page-content">
+                    <h1 style="font-size: 36px;">Thank You!</h1>
+                    <div style="font-size: 18px; margin-top: 20px;">
+                        For more information,<br>
+                        visit the main application
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-button" id="prevBtn">← Previous</button>
+        <button class="nav-button" id="nextBtn">Next →</button>
+    </div>
+
+    <script>
+        // Переменные для отслеживания состояния
+        let currentPage = 0;
+        const totalPages = document.querySelectorAll('.page').length;
+
+        // Determine book size based on screen width
+        function getBookSize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            if (width < 500) {
+                // Mobile - smaller book but still spread
+                return {
+                    width: Math.min((width - 40) / 2, 180),
+                    height: Math.min(height - 200, 350)
+                };
+            } else if (width < 768) {
+                // Small tablet
+                return {
+                    width: 200,
+                    height: 400
+                };
+            } else if (width < 1024) {
+                // Tablet
+                return {
+                    width: 280,
+                    height: 500
+                };
+            } else {
+                // Desktop
+                return {
+                    width: 400,
+                    height: 600
+                };
+            }
+        }
+
+        const bookSize = getBookSize();
+
+        const pageFlip = new St.PageFlip(document.getElementById('book'), {
+            width: bookSize.width,
+            height: bookSize.height,
+            size: 'fixed',
+            showCover: true,         // Обложка показывается отдельно
+            drawShadow: false,
+            flippingTime: 1000,
+            usePortrait: false,      // Всегда режим разворота (2 страницы)
+            startPage: 0,
+            maxShadowOpacity: 0,
+            showPageCorners: true,
+            disableFlipByClick: false,
+            mobileScrollSupport: false,
+            swipeDistance: 30,
+            clickEventForward: true,
+            useMouseEvents: true,
+            autoSize: false
+        });
+
+        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+        // Navigation buttons
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        prevBtn.addEventListener('click', () => {
+            pageFlip.flipPrev();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            pageFlip.flipNext();
+        });
+
+        // Функция обновления состояния кнопок
+        function updateButtons() {
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage >= totalPages - 1;
+        }
+
+        // Update button states when page changes
+        pageFlip.on('flip', (e) => {
+            currentPage = e.data;
+            console.log('Current page:', currentPage, '/', totalPages);
+            updateButtons();
+        });
+
+        pageFlip.on('changeState', (e) => {
+            // Обновляем кнопки при изменении состояния
+            updateButtons();
+        });
+
+        // Initial button state
+        updateButtons();
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                location.reload();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

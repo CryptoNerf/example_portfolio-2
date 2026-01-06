@@ -22,37 +22,40 @@
     <meta name="twitter:description" content="Portfolio of Dasha Mamba - Artist and Designer" />
     <meta name="twitter:image" content="https://dasha-mamba.com/img/header.jpg" />
 
-    <link rel="stylesheet" href="css/about-full.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/back-button.css">
 </head>
 <body>
     <!-- Back Button -->
-    <button class="back-button" onclick="window.location.href='about.html'">
+    <button class="back-button" onclick="window.location.href='index.html'">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
         Back
     </button>
-    <div class="fullscreen-image-container">
-        <!-- Изображение с глюк-эффектом -->
-        <img src="img/aboutdasha.jpg" alt="About Dasha Mamba" class="fullscreen-image" id="mainImage">
+    <!-- Header - статичный на всех страницах -->
+    <header class="header-image">
+        <img src="img/header.jpg" alt="Dasha Mamba Portfolio Header" class="header-desktop">
+        <img src="img/header_mobile.png" alt="Dasha Mamba Portfolio Header" class="header-mobile">
+    </header>
+
+    <!-- Content wrapper с фоном на всю ширину -->
+    <div class="content-wrapper">
+        <!-- Контент страницы -->
+        <div class="about-content">
+            <p class="about-title">My rider:</p>
+
+            <a href="my_rider_full.html" class="about-image-link">
+                <img src="img/rider.jpg" alt="About Dasha Mamba" class="about-image">
+            </a>
+        </div>
     </div>
 
-    <script>
-        // Запускаем глитч эффект при загрузке страницы с задержкой
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainImage = document.getElementById('mainImage');
-
-            // Добавляем класс глюка через 1 секунду после загрузки
-            setTimeout(() => {
-                mainImage.classList.add('glitch-on-load');
-
-                // Убираем класс анимации после завершения
-                setTimeout(() => {
-                    mainImage.classList.remove('glitch-on-load');
-                }, 150);
-            }, 150);
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="footer-image">
+        <img src="img/footer.jpg" alt="Dasha Mamba Portfolio Footer" class="footer-desktop">
+        <img src="img/footer_mobile.jpg" alt="Dasha Mamba Portfolio Footer" class="footer-mobile">
+    </footer>
 </body>
 </html>

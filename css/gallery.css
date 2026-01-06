@@ -291,6 +291,51 @@ body {
     color: #FFFFFF;
 }
 
+/* Зелёная кнопка поворота на разворотах требующих поворота */
+.rotate-btn.green {
+    background: #00FF53;
+    border-top: 2px solid #33FF70;
+    border-left: 2px solid #33FF70;
+    border-bottom: 2px solid #00CC42;
+    border-right: 2px solid #00CC42;
+    box-shadow: inset 1px 1px 0 #66FF99, inset -1px -1px 0 #009933,
+                0 0 8px rgba(0, 255, 83, 0.5);
+}
+
+.rotate-btn.green:hover {
+    background: #33FF70;
+    box-shadow: inset 1px 1px 0 #66FF99, inset -1px -1px 0 #009933,
+                0 0 12px rgba(0, 255, 83, 0.7);
+}
+
+.rotate-btn.green:active {
+    background: #00CC42;
+    border-top: 2px solid #009933;
+    border-left: 2px solid #009933;
+    border-bottom: 2px solid #33FF70;
+    border-right: 2px solid #33FF70;
+    box-shadow: inset 1px 1px 2px #006622;
+}
+
+.rotate-btn.green svg {
+    color: #000000;
+}
+
+/* Зелёная кнопка в активном состоянии (повёрнута) */
+.rotate-btn.green.active {
+    background: #00CC42;
+    border-top: 2px solid #009933;
+    border-left: 2px solid #009933;
+    border-bottom: 2px solid #33FF70;
+    border-right: 2px solid #33FF70;
+    box-shadow: inset 1px 1px 2px #006622,
+                0 0 8px rgba(0, 255, 83, 0.5);
+}
+
+.rotate-btn.green.active svg {
+    color: #FFFFFF;
+}
+
 .nav-control-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
