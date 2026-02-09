@@ -5,7 +5,8 @@
       "Bash(mkdir:*)",
       "Bash(mv:*)",
       "Bash(nul)",
-      "Bash(python split_photos.py:*)"
+      "Bash(python split_photos.py:*)",
+      "Bash(findstr:*)"
     ],
     "deny": [],
     "ask": []

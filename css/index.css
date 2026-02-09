@@ -184,17 +184,25 @@ header {
     margin-top: 42px;
     margin-left: 190px;
     font-size: 14px;
+    max-width: calc(800px - 190px - 40px); /* Учитываем margin-left и отступы */
 }
 
 .links p {
     margin-bottom: 16px;
     font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .links a {
     font-weight: normal;
     text-decoration: none;
-    color:#000000
+    color:#000000;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    display: inline-block;
+    max-width: 100%;
 }
 
 .links a:hover {
@@ -419,6 +427,7 @@ header {
     .links {
         margin-top: 30px;
         margin-left: 70px;
+        max-width: calc(100vw - 70px - 30px); /* Учитываем margin-left и отступы справа */
     }
 }
 
