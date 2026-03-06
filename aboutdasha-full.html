@@ -34,22 +34,33 @@
         Back
     </button>
     <div class="fullscreen-image-container">
-        <!-- Изображение с глюк-эффектом -->
-        <img src="img/aboutdasha.jpg" alt="About Dasha Mamba" class="fullscreen-image" id="mainImage">
+        <!-- Image with glitch effect -->
+        <div class="image-link-wrapper" id="imageLayer">
+            <img src="img/aboutdasha.jpg" alt="About Dasha Mamba" class="fullscreen-image" id="mainImage">
+
+            <a class="image-link" href="#" style="--x: 72%; --y: 7%;">Dasha Mamba</a>
+            <a class="image-link" href="#" style="--x: 78%; --y: 34%;">Arma17</a>
+            <a class="image-link" href="#" style="--x: 62%; --y: 35%;">Radio</a>
+            <a class="image-link" href="#" style="--x: 62%; --y: 39%;">Paradiz</a>
+            <a class="image-link" href="#" style="--x: 49%; --y: 45%;">Outline</a>
+            <a class="image-link" href="#" style="--x: 48%; --y: 47.5%;">Sensor</a>
+            <a class="image-link" href="#" style="--x: 52%; --y: 49.5%;">Epizode</a>
+            <a class="image-link" href="#" style="--x: 52%; --y: 55.5%;">Outline</a>
+        </div>
     </div>
 
     <script>
         // Запускаем глитч эффект при загрузке страницы с задержкой
         document.addEventListener('DOMContentLoaded', () => {
-            const mainImage = document.getElementById('mainImage');
+            const imageLayer = document.getElementById('imageLayer');
 
             // Добавляем класс глюка через 1 секунду после загрузки
             setTimeout(() => {
-                mainImage.classList.add('glitch-on-load');
+                imageLayer.classList.add('glitch-on-load');
 
                 // Убираем класс анимации после завершения
                 setTimeout(() => {
-                    mainImage.classList.remove('glitch-on-load');
+                    imageLayer.classList.remove('glitch-on-load');
                 }, 150);
             }, 150);
         });
