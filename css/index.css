@@ -308,7 +308,7 @@ header {
     position: relative;
     float: right;
     margin-top: 30px;
-    margin-right: -20px;
+    /* margin-right: -20px; */
     margin-left: 20px;
     margin-bottom: 30px;
     filter: url(#inkEffect);

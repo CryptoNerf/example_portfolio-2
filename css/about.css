@@ -53,6 +53,36 @@
     max-width: 800px;
 }
 
+.image-link-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
+}
+
+.image-link {
+    position: absolute;
+    z-index: 2;
+    left: var(--x);
+    top: var(--y);
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    text-decoration: none;
+    line-height: 0;
+    width: 38%;
+}
+
+.image-link img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 0.5px currentColor) drop-shadow(0 0 0.5px currentColor);
+}
+
+.image-link:hover {
+    opacity: 0.75;
+}
+
 .philosophy-full {
     display: flex;
     flex-direction: column;

@@ -76,17 +76,18 @@ body {
     left: var(--x);
     top: var(--y);
     transform: translate(-50%, -50%);
-    color: #8f3fb7;
-    font-family: "Times New Roman", "Times", serif;
-    font-size: clamp(9px, 1.2vw, 12px);
-    letter-spacing: 0.02em;
+    transform-origin: center;
     text-decoration: none;
-    white-space: nowrap;
-    text-shadow: 0 0 6px rgba(247, 244, 229, 0.9);
+    line-height: 0;
+}
+
+.image-link img {
+    display: block;
+    /* filter: drop-shadow(0 0 0.5px currentColor) drop-shadow(0 0 0.5px currentColor); */
 }
 
 .image-link:hover {
-    text-decoration: underline;
+    opacity: 0.75;
 }
 
 .image-link:focus-visible {
