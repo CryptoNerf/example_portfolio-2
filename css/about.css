@@ -60,6 +60,33 @@
     line-height: 0;
 }
 
+.philosophy3-section {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
+}
+
+.philosophy3-spacer {
+    height: 600px;
+}
+
+.chakra-links-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.chakra-links-overlay.is-fixed {
+    position: fixed !important;
+    z-index: 100;
+}
+
+.chakra-links-overlay .image-link {
+    pointer-events: auto;
+}
+
 .image-link {
     position: absolute;
     z-index: 2;
